@@ -56,7 +56,15 @@
   [session] 
   ((basic-get session "/images") "images"))
 
-(defn create-server [session name image-id flavor-id & [metadata]]
+(defn create-server 
+  "Creates a new server instance.
+   name: Name for server instance.
+   
+   image-id: An image's id to build the instance from. Use list-images
+   for image options.
+
+   flavor-id: Id of hardware configuration. See choice with list-flavors." 
+  [session name image-id flavor-id & [metadata]]
   (let [json-vals (-> {} (assoc :name name)
 		      (assoc :imageId image-id)
 		      (assoc :flavorId flavor-id))
