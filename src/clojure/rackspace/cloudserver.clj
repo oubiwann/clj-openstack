@@ -40,7 +40,6 @@
 	     ((response :headers) (constants :x-auth-token))))
    (catch Exception e (println e))))
 
-
 (defn list-servers 
   "Returns running servers. Pass id as an argument to view specific 
    server details."
