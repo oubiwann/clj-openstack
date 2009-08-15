@@ -65,9 +65,9 @@
 
    flavor-id: Id of hardware configuration. See choice with list-flavors." 
   [session name image-id flavor-id & [metadata]]
-  (let [json-vals (-> {} (assoc :name name)
-		      (assoc :imageId image-id)
-		      (assoc :flavorId flavor-id))
+  (let [json-vals {:name name
+		   :imageId image-id
+		   :flavorId flavor-id}
 	server {:server (if (not= nil metadata)
 			  (-> json-vals (assoc :metadata metadata))
 			  json-vals)}
