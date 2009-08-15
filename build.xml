@@ -1,0 +1,63 @@
+<project name="clojure-cloudserver" default="jar">
+   <description>
+      Clojure Rackspace Cloud Servers
+   </description>
+
+   <property name="clojure.jar" location="/usr/local/clojure/clojure.jar"/>
+   <property name="http-client.jar" 
+      location="/usr/local/clojure/extra/clojure-http-client/clojure-http-client.jar"/>
+   <property name="contrib.jar" 
+      location="/usr/local/clojure/extra/clojure-contrib/clojure-contrib.jar" />
+
+
+   <property name="build.dir" location="classes"/>
+   <property name="source.dir" location="src"/>
+   <property name="jar.name" location="clojure-cloudserver.jar"/>
+   <property file="local.properties"/>
+   <available property="hasclojure" file="${clojure.jar}"/>
+   <available property="hascontrib" file="${contrib.jar}"/>
+   <available property="hashttp" file="${http-client.jar}"/>
+
+   <target name="checkforjars" depends="init">
+      <condition property="hasjars" else="false">
+         <and>
+            <isset property="hasclojure"/>
+            <isset property="hascontrib"/>
+            <isset property="hashttp"/>
+         </and>
+      </condition>
+   </target>
+
+   <target name="clean" description="Remove generated classfiles">
+      <delete dir="${build.dir}"/>
+   </target>
+
+   <target name="init" depends="clean">
+      <tstamp/>
+      <mkdir dir="${build.dir}"/>
+   </target>
+
+   <target name="compile" depends="checkforjars" description="Compile sources" 
+      if="hasjars">
+      <java classname="clojure.lang.Compile">
+         <classpath>
+            <path location="${clojure.jar}"/>
+            <path location="${contrib.jar}"/>
+            <path location="${http-client.jar}"/>
+            <path location="${build.dir}"/>
+            <path location="${source.dir}"/>
+         </classpath>
+         <sysproperty key="clojure.compile.path" value="${build.dir}"/>
+         <arg value="clojure.rackspace.cloudserver"/>
+      </java>
+   </target>
+
+   <target name="jar" description="Create jar file" depends="compile">
+      <jar jarfile="${jar.name}" index="true">
+         <path location="MIT.txt"/>
+         <fileset dir="${source.dir}" includes="**/*.clj"/>
+         <fileset dir="${build.dir}" includes="**/*.class"/>
+      </jar>
+   </target>
+
+</project>
