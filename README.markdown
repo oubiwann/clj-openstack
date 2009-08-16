@@ -10,7 +10,6 @@ Here's a simple example:
     (ns clojure.rackspace.example
       (:require [clojure.rackspace.cloudserver :as rs]))
       
-    (def session (rs/login "<username>" "<api key>"))
-
-    (rs/list-servers session)
+    (let [session (rs/login "<username>" "<api key>")]
+        (rs/list-servers session))
 
