@@ -143,4 +143,3 @@
   [session id image-id]
   (action session (str "/servers/" id "/action") 
 	  :rebuild :imageId image-id))
-
