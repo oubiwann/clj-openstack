@@ -12,10 +12,13 @@ TBD
 Links
 -----
 
- * http://docs.rackspace.com/ - documentation for Rackspace Cloud
-   * http://docs.rackspace.com/servers/api/v2/cs-devguide/content/ch_preface.html - Cloud Servers docs
- * http://www.rackspace.com/cloud/ - information about Rackspace Cloud services
- * https://mycloud.rackspace.com/ - sign in to the Rackspace Cloud (OpenStack)
+* http://docs.rackspace.com/ - documentation for Rackspace Cloud
+
+  * http://docs.rackspace.com/servers/api/v2/cs-devguide/content/ch_preface.html - Cloud Servers docs
+
+* http://www.rackspace.com/cloud/ - information about Rackspace Cloud services
+
+* https://mycloud.rackspace.com/ - sign in to the Rackspace Cloud (OpenStack)
 
 Installation
 ============
