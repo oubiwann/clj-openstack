@@ -4,6 +4,7 @@ clj-rackspace
 
 *Pure Clojure Bindings for the Rackspace Cloud*
 
+
 Background
 ==========
 
@@ -26,6 +27,7 @@ That just sounded like more fun :-) So here we are.
 .. _technomancy: https://github.com/technomancy
 .. _clojure-http-client: https://github.com/technomancy/clojure-http-client
 
+
 Motivation
 ----------
 
@@ -33,10 +35,10 @@ This project doesn't really aim to be anything special. As we need some
 functionality , we'll add it. There are two efforts driving this work:
 
 #. Rackspace Cloud Servers users who write in Clojure want to have a library
-that can use quickly, easily, and in a Clojure-idiomatic way.
+   that can use quickly, easily, and in a Clojure-idiomatic way.
 
 #. `storm-deploy`_ users would like to be able to deploy to Rackspace Cloud
-Servers.
+   Servers.
 
 A note about that last point: `pallet`_ (used by storm-deploy) currently uses
 `jclouds`_, so it might simply be easier to use jclouds. Only time will tell. In
@@ -48,6 +50,7 @@ the meantime, we'll have fun playing with a pure-Clojure implementation.
 .. _pallet: https://github.com/pallet/pallet
 .. _jclouds: https://github.com/jclouds/jclouds
 
+
 Vision
 ------
 
@@ -56,8 +59,12 @@ clj-http-client
 .. Links
 .. -----
 
+
 Links
 -----
+
+To use or develop against Rackspace Cloud APIs, we've provided the following
+(hopefully) useful links:
 
 * http://docs.rackspace.com/ - documentation for Rackspace Cloud
 
@@ -67,10 +74,12 @@ Links
 
 * https://mycloud.rackspace.com/ - sign in to the Rackspace Cloud (OpenStack)
 
+
 Installation
 ============
 
 TBD
+
 
 Usage
 =====
