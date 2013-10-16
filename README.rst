@@ -31,8 +31,7 @@ That just sounded like more fun :-) So here we are.
 Motivation
 ----------
 
-This project doesn't really aim to be anything special. As we need some
-functionality , we'll add it. There are two efforts driving this work:
+There are two efforts driving this work:
 
 #. Rackspace Cloud Servers users who write in Clojure want to have a library
    that can use quickly, easily, and in a Clojure-idiomatic way.
@@ -54,10 +53,33 @@ the meantime, we'll have fun playing with a pure-Clojure implementation.
 Vision
 ------
 
-clj-http-client
+This project doesn't really aim to be anything special. As we need some
+functionality , we'll add it. Initial focus will be on Cloud Servers.
+
+
+Dependencies
+------------
+
+In the four years since this project was started, HTP clients in Clojure have
+come a long way. We will be migrating away from the original implementation's
+choice of clojure-http-client.
+
+The two commonly recommended clients are:
+
+* `clj-http`_ for synchronous/blocking client calls; this library is a Clojure
+  wrapper for the Apache HTTP client library.
+
+* `http.async.client`_ for asynchronous usage; it's based on the
+  `Asynchronous Http Client for Java`_.
+
+We're going to start with the synchronous client, and then possibly add async
+support.
 
 .. Links
 .. -----
+.. _clj-http: https://github.com/dakrone/clj-http
+.. _http.async.client: https://github.com/neotyk/http.async.client
+.. _Asynchronous Http Client for Java.: https://github.com/AsyncHttpClient/async-http-client
 
 
 Links
