@@ -1,11 +1,31 @@
-########################################
-Clojure Bindings for the Rackspace Cloud
-########################################
+#############
+clj-rackspace
+#############
+
+*Clojure Bindings for the Rackspace Cloud*
+
+Background
+==========
+
+TBD
+
+Links
+-----
+
+ * http://docs.rackspace.com/ - documentation for Rackspace Cloud
+   * http://docs.rackspace.com/servers/api/v2/cs-devguide/content/ch_preface.html - Cloud Servers docs
+ * http://www.rackspace.com/cloud/ - information about Rackspace Cloud services
+ * https://mycloud.rackspace.com/ - sign in to the Rackspace Cloud (OpenStack)
+
+Installation
+============
+
+TBD
+
+Usage
+=====
 
 The info in this README is outdated. More coming soon!
-
-Requires [clojure-contrib](http://github.com/richhickey/clojure-contrib/tree/master) and
-[clojure-http-client](http://github.com/technomancy/clojure-http-client/tree/master)
 
 Here's a simple example:
 
