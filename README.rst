@@ -2,12 +2,59 @@
 clj-rackspace
 #############
 
-*Clojure Bindings for the Rackspace Cloud*
+*Pure Clojure Bindings for the Rackspace Cloud*
 
 Background
 ==========
 
-TBD
+This project was started in 2009 by Samuel Hughes. After a first implementation
+against the v1 API of Rackspace Cloud Servers, the project went into
+hibernation. 
+
+Clojure is a delight to code in, and although it supports fabulous
+Java interop, using jclouds from Clojure is a bit tedious. One alternative
+would be to take the `Clojure-idiomatic example` and grow that as a wrapper
+around jclouds. That was seriously considered. Another alterative was to take
+Samuel Hughes' work based on `technomancy`'s `clojure-http-client` and develop
+a pure Clojure implementation.
+
+That just sounded like more fun :-) So here we are.
+
+.. Links
+.. -----
+.. _Clojure-idiomatic example: https://github.com/jclouds/jclouds-examples/tree/master/compute-clojure
+.. _technomancy: https://github.com/technomancy
+.. _clojure-http-client: https://github.com/technomancy/clojure-http-client
+
+Motivation
+----------
+
+This project doesn't really aim to be anything special. As we need some
+functionality , we'll add it. There are two efforts driving this work:
+
+# Rackspace Cloud Servers users who write in Clojure want to have a library
+that can use quickly, easily, and in a Clojure-idiomatic way.
+
+# `storm-deploy` users would like to be able to deploy to Rackspace Cloud
+Servers.
+
+A note about that last point: `pallet` (used by storm-deploy) currently uses
+`jclouds`, so it might simply be easier to use jclouds. Only time will tell. In
+the meantime, we'll have fun playing with a pure-Clojure implementation.
+
+.. Links
+.. -----
+.. _storm-deploy: https://github.com/nathanmarz/storm-deploy
+.. _pallet: https://github.com/pallet/pallet
+.. _jclouds: https://github.com/jclouds/jclouds
+
+Vision
+------
+
+clj-http-client
+
+.. Links
+.. -----
 
 Links
 -----
