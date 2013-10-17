@@ -7,6 +7,8 @@
                  [org.clojure/core.incubator "0.1.3"]
                  [org.clojure/data.json "0.2.3"]
                  [clj-http "0.7.7"]]
+  :repositories [["releases" {:url "https://clojars.org/repo"
+                              :creds :gpg}]]
   :repl-options {
     :init-ns rackspace.api}
   :profiles {
