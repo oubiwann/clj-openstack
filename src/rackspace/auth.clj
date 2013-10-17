@@ -1,6 +1,5 @@
 (ns rackspace.auth
-  (:require [clojure.core.strint :as strint]
-            [clojure.data.json :as json]
+  (:require [clojure.data.json :as json]
             [clojure.string :as string]
             [clj-http.client :as http]
             [rackspace.const :as const]))
