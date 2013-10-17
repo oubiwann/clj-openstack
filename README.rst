@@ -5,6 +5,9 @@ clj-rackspace
 *Pure Clojure Bindings for the Rackspace Cloud*
 
 
+.. contents:: Table of Contents
+
+
 Background
 ==========
 
@@ -103,17 +106,129 @@ Installation
 TBD
 
 
-Usage
-=====
+CloudServers Usage
+==================
 
-The info in this README is outdated. More coming soon!
+The easiest way to get started with `clj-rackspace` is to play with it in the
+REPL. From the rpoject directory, just do this at the command line prompt:
 
-Here's a simple example:
+.. code:: bash
+
+    $ make shell
+
+Which will dump you in the `rackspace.api` namespace:
+
+.. code:: text
+
+    nREPL server started on port 62531 on host 127.0.0.1
+    REPL-y 0.2.1
+    Clojure 1.5.1
+        Docs: (doc function-name-here)
+              (find-doc "part-of-name-here")
+      Source: (source function-name-here)
+     Javadoc: (javadoc java-object-or-class-here)
+        Exit: Control+D or (exit) or (quit)
+     Results: Stored in vars *1, *2, *3, an exception in *e
+
+    rackspace.api=>
+
+For the examples below, you will need to provide your own username, password,
+and any data returned from Rackspace Cloud services.
+
+To make things easier to ready, let's set up pretty-printing for the examples:
 
 .. code:: clojure
 
-    (ns clojure.rackspace.example
-      (:require [clojure.rackspace.cloudserver :as rs]))
+    rackspace.api=> (require '[clojure.pprint :refer [pprint]])
+    nil
+    rackspace.api=>
 
-    (let [session (rs/login "<username>" "<api key>")]
-        (rs/list-servers session))
+
+Logging In
+----------
+
+.. code:: clojure
+
+    rackspace.api=> (def response (login "alice" "z0mg11!!secret1!1"))
+    #'rackspace.api/response
+    rackspace.api=>
+
+
+Working with Login Data
+-----------------------
+
+With our response data saved, we can no perform several operations with `auth`
+utility functions.
+
+Getting the token:
+
+.. code:: clojure
+
+    rackspace.api=> (pprint (get-token response))
+    {:id "482664e7cf97408e82f512fad93abc98",
+     :expires "2013-10-17T20:11:40.557-05:00",
+     :tenant {:id "007007", :name "007007"},
+     :RAX-AUTH:authenticatedBy ["PASSWORD"]}
+    nil
+    rackspace.api=>
+
+Listing the regions:
+
+.. code:: clojure
+
+    rackspace.api=> (list-cloud-servers-regions response)
+    (:syd :dfw :ord :iad)
+    rackspace.api=>
+
+Getting all the endpoints:
+
+.. code:: clojure
+
+    rackspace.api=> (pprint (get-cloud-servers-endpoints response))
+    [{:region "SYD",
+      :tenantId "007007",
+      :publicURL "https://syd.servers.api.rackspacecloud.com/v2/007007",
+      :versionInfo "https://syd.servers.api.rackspacecloud.com/v2",
+      :versionList "https://syd.servers.api.rackspacecloud.com/",
+      :versionId "2"}
+     {:region "DFW",
+      :tenantId "007007",
+      :publicURL "https://dfw.servers.api.rackspacecloud.com/v2/007007",
+      :versionInfo "https://dfw.servers.api.rackspacecloud.com/v2",
+      :versionList "https://dfw.servers.api.rackspacecloud.com/",
+      :versionId "2"}
+     {:region "ORD",
+      :tenantId "007007",
+      :publicURL "https://ord.servers.api.rackspacecloud.com/v2/007007",
+      :versionInfo "https://ord.servers.api.rackspacecloud.com/v2",
+      :versionList "https://ord.servers.api.rackspacecloud.com/",
+      :versionId "2"}
+     {:region "IAD",
+      :tenantId "007007",
+      :publicURL "https://iad.servers.api.rackspacecloud.com/v2/007007",
+      :versionInfo "https://iad.servers.api.rackspacecloud.com/v2",
+      :versionList "https://iad.servers.api.rackspacecloud.com/",
+      :versionId "2"}]
+    nil
+    rackspace.api=>
+
+Optionally, you may provide a version number (version 2 is assumed by default):
+
+.. code:: clojure
+
+    rackspace.api=> (pprint (get-cloud-servers-endpoints response :version 1))
+    [{:tenantId "007007",
+      :publicURL "https://servers.api.rackspacecloud.com/v1.0/007007",
+      :versionInfo "https://servers.api.rackspacecloud.com/v1.0",
+      :versionList "https://servers.api.rackspacecloud.com/",
+      :versionId "1.0"}]
+    nil
+    rackspace.api=>
+
+If you know the region you want, you get get the URL for it simply with this:
+
+.. code:: clojure
+
+    rackspace.api=> (get-region-url response :dfw)
+    "https://dfw.servers.api.rackspacecloud.com/v2/007007"
+    rackspace.api=>
