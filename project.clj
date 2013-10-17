@@ -1,4 +1,4 @@
-(defproject clj-rackspace "0.2.0-SNAPSHOT"
+(defproject clj-rackspace "0.1.1-SNAPSHOT"
   :description "Pure Clojure language bindings for the Rackspace Cloud"
   :url "https://github.com/oubiwann/clj-rackspace"
   :license {:name "Eclipse Public License"

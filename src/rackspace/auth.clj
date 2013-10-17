@@ -2,20 +2,41 @@
   (:require [clojure.data.json :as json]
             [clojure.string :as string]
             [clj-http.client :as http]
-            [rackspace.const :as const]))
+            [rackspace.const :as const]
+            [rackspace.exceptions :as exceptions]))
 
 
-(defn auth-payload [username password]
+(defn password-auth-payload [username password]
   {:body (json/write-str {:auth
                           {:passwordCredentials
                            {:username username
                             :password password}}})
    :headers {"Content-Type" "application/json"}})
 
-(defn login [username password]
+(defn apikey-auth-payload [username apikey]
+  {:body (json/write-str {:auth
+                          {:RAX-KSKEY:apiKeyCredentials
+                           {:username username
+                            :apiKey apikey}}})
+   :headers {"Content-Type" "application/json"}})
+
+(defn password-login [username password]
   (http/post
     const/auth-url
-    (auth-payload username password)))
+    (password-auth-payload username password)))
+
+(defn apikey-login [username password]
+  (http/post
+    const/auth-url
+    (apikey-auth-payload username password)))
+
+(defn login [username & {:keys [password apikey]}]
+  (cond
+    password (password-login username password)
+    apikey (apikey-login username apikey)
+    :else (throw
+            (exceptions/auth-error
+              "AuthError: Missing named parameter"))))
 
 (defn parse-json-body [response]
   (json/read-str (response :body) :key-fn keyword))
@@ -62,4 +83,4 @@
       (get-cloud-servers-endpoints response :version 2))))
 
 (defn get-cloud-servers-region-url [response region]
-  ((get-region response region) :publicURL))
+  ((get-cloud-servers-region response region) :publicURL))

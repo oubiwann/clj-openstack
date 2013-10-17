@@ -30,7 +30,7 @@ automatic download with the following:
       ...
       :dependencies [[org.clojure/clojure "1.5.1"]
                       ...
-                      [clj-rackspace "0.1.0"]]
+                      [clj-rackspace "0.1.1"]]
       ...)
 
 You can then use it in your project like so:
@@ -38,13 +38,13 @@ You can then use it in your project like so:
 .. code:: clojure
 
     (ns your-project.client
-      (:require [rackspace.api :as rs-api]))
+      (:require [rackspace.api :as rax-api]))
 
 Or from the REPL:
 
 .. code:: clojure
 
-    (require '[rackspace.api :as rs-api])
+    (require '[rackspace.api :as rax-api])
 
 .. Links
 .. -----
@@ -97,10 +97,29 @@ CloudServers Usage
 Logging In
 ----------
 
+Via password:
+
 .. code:: clojure
 
-    rackspace.api=> (def response (login "alice" "z0mg11!!secret1!1"))
+    rackspace.api=> (def response (login "alice" :password "z0mg11!!secret1!1"))
     #'rackspace.api/response
+    rackspace.api=>
+
+Via API key:
+
+.. code:: clojure
+
+    rackspace.api=> (login "alice" :apikey "0a12b33c444d5555ee0123456789ffff")
+    {:orig-content-encoding "gzip" ... }
+    rackspace.api=>
+
+You will need to pass one of the two, however:
+
+.. code:: clojure
+
+    rackspace.api=> (login "alice")
+
+    ExceptionInfo AuthError: Missing named parameter  ...
     rackspace.api=>
 
 
