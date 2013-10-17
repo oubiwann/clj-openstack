@@ -8,7 +8,7 @@
                  [org.clojure/data.json "0.2.3"]
                  [clj-http "0.7.7"]]
   :repl-options {
-    :init-ns rackspace.auth}
+    :init-ns rackspace.api}
   :profiles {
     :dev {
       :dependencies [[org.clojure/tools.namespace "0.2.3"]
