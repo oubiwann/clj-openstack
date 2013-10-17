@@ -63,7 +63,7 @@ functionality , we'll add it. Initial focus will be on Cloud Servers.
 Dependencies
 ------------
 
-In the four years since this project was started, HTP clients in Clojure have
+In the four years since this project was started, HTTP clients in Clojure have
 come a long way. We will be migrating away from the original implementation's
 choice of clojure-http-client.
 
@@ -73,7 +73,7 @@ The two commonly recommended clients are:
   wrapper for the Apache HTTP client library.
 
 * `http.async.client`_ for asynchronous usage; it's based on the
-  `Asynchronous Http Client for Java`_.
+  Asynchronous Http Client for Java.
 
 We're going to start with the synchronous client, and then possibly add async
 support.
@@ -82,7 +82,6 @@ support.
 .. -----
 .. _clj-http: https://github.com/dakrone/clj-http
 .. _http.async.client: https://github.com/neotyk/http.async.client
-.. _Asynchronous Http Client for Java.: https://github.com/AsyncHttpClient/async-http-client
 
 
 Links
@@ -118,7 +117,7 @@ REPL. From the rpoject directory, just do this at the command line prompt:
 
 Which will dump you in the `rackspace.api` namespace:
 
-.. code:: text
+.. code:: clojure
 
     nREPL server started on port 62531 on host 127.0.0.1
     REPL-y 0.2.1
@@ -135,7 +134,8 @@ Which will dump you in the `rackspace.api` namespace:
 For the examples below, you will need to provide your own username, password,
 and any data returned from Rackspace Cloud services.
 
-To make things easier to ready, let's set up pretty-printing for the examples:
+To make things easier to read in the examples below, let's set up
+pretty-printing:
 
 .. code:: clojure
 
@@ -225,7 +225,7 @@ Optionally, you may provide a version number (version 2 is assumed by default):
     nil
     rackspace.api=>
 
-If you know the region you want, you get get the URL for it simply with this:
+If you know the region you want, you can get the URL for it simply with this:
 
 .. code:: clojure
 
