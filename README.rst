@@ -179,7 +179,7 @@ If you know the region you want, you can get the URL for it simply with this:
 
 .. code:: clojure
 
-    rackspace.api=> (get-region-url response :dfw)
+    rackspace.api=> (get-cloud-servers-region-url response :dfw)
     "https://dfw.servers.api.rackspacecloud.com/v2/007007"
     rackspace.api=>
 

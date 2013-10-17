@@ -3,5 +3,5 @@
                                     get-token
                                     list-cloud-servers-regions
                                     get-cloud-servers-endpoints
-                                    get-region
-                                    get-region-url]]))
+                                    get-cloud-servers-region
+                                    get-cloud-servers-region-url]]))

@@ -53,7 +53,7 @@
     (fn [x] (keyword (string/lower-case (x :region))))
     (get-cloud-servers-endpoints response :version 2)))
 
-(defn get-region
+(defn get-cloud-servers-region
   "This is only valid for cloud servers v2."
   [response region]
   (first
@@ -61,5 +61,5 @@
       (fn [x] (if (= (x :region) (const/regions region)) x))
       (get-cloud-servers-endpoints response :version 2))))
 
-(defn get-region-url [response region]
+(defn get-cloud-servers-region-url [response region]
   ((get-region response region) :publicURL))
