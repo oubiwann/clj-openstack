@@ -51,8 +51,8 @@ Or from the REPL:
 .. _Clojars: https://clojars.org/clj-rackspace
 
 
-CloudServers Usage
-==================
+Running the Examples
+====================
 
 The easiest way to get started with `clj-rackspace` is to play with it in the
 REPL. From the project directory, just do this at the command line prompt:
@@ -88,6 +88,10 @@ pretty-printing:
     rackspace.api=> (require '[clojure.pprint :refer [pprint]])
     nil
     rackspace.api=>
+
+
+CloudServers Usage
+==================
 
 
 Logging In
