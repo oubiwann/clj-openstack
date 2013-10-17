@@ -107,7 +107,7 @@ Logging In
 Working with Login Data
 -----------------------
 
-With our response data saved, we can no perform several operations with `auth`
+With our response data saved, we can now perform several operations with `auth`
 utility functions.
 
 Getting the token:
