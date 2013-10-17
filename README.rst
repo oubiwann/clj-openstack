@@ -8,12 +8,10 @@ clj-rackspace
 .. contents:: Table of Contents
 
 
-Intro
-=====
+Purpose
+=======
 
-
-Vision
-------
+Fun.
 
 This project doesn't really aim to be anything special. As we need some
 functionality, we'll add it. Initial focus will be on supporting only a subset
@@ -28,12 +26,12 @@ automatic download with the following:
 
 .. code:: clojure
 
-(defproject your-project "1.2.3"
-  ...
-  :dependencies [[org.clojure/clojure "1.5.1"]
-                  ...
-                  [clj-rackspace "0.1.0"]]
-  ...)
+    (defproject your-project "1.2.3"
+      ...
+      :dependencies [[org.clojure/clojure "1.5.1"]
+                      ...
+                      [clj-rackspace "0.1.0"]]
+      ...)
 
 You can then use it in your project like so:
 
