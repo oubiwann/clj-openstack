@@ -8,101 +8,49 @@ clj-rackspace
 .. contents:: Table of Contents
 
 
-Background
-==========
-
-This project was started in 2009 by Samuel Hughes. After a first implementation
-against the v1 API of Rackspace Cloud Servers, the project went into
-hibernation.
-
-Clojure is a delight to code in, and although it supports fabulous
-Java interop, using jclouds from Clojure is a bit tedious. One alternative
-would be to take the `Clojure-idiomatic example`_ and grow that as a wrapper
-around jclouds. That was seriously considered. Another alterative was to take
-Samuel Hughes' work based on `technomancy`_'s `clojure-http-client`_ and develop
-a pure Clojure implementation.
-
-That just sounded like more fun :-) So here we are.
-
-.. Links
-.. -----
-.. _Clojure-idiomatic example: https://github.com/jclouds/jclouds-examples/tree/master/compute-clojure
-.. _technomancy: https://github.com/technomancy
-.. _clojure-http-client: https://github.com/technomancy/clojure-http-client
-
-
-Motivation
-----------
-
-There are two efforts driving this work:
-
-#. Rackspace Cloud Servers users who write in Clojure want to have a library
-   that can use quickly, easily, and in a Clojure-idiomatic way.
-
-#. `storm-deploy`_ users would like to be able to deploy to Rackspace Cloud
-   Servers.
-
-A note about that last point: `pallet`_ (used by storm-deploy) currently uses
-`jclouds`_, so it might simply be easier to use jclouds. Only time will tell. In
-the meantime, we'll have fun playing with a pure-Clojure implementation.
-
-.. Links
-.. -----
-.. _storm-deploy: https://github.com/nathanmarz/storm-deploy
-.. _pallet: https://github.com/pallet/pallet
-.. _jclouds: https://github.com/jclouds/jclouds
+Intro
+=====
 
 
 Vision
 ------
 
 This project doesn't really aim to be anything special. As we need some
-functionality , we'll add it. Initial focus will be on Cloud Servers.
-
-
-Dependencies
-------------
-
-In the four years since this project was started, HTTP clients in Clojure have
-come a long way. We will be migrating away from the original implementation's
-choice of clojure-http-client.
-
-The two commonly recommended clients are:
-
-* `clj-http`_ for synchronous/blocking client calls; this library is a Clojure
-  wrapper for the Apache HTTP client library.
-
-* `http.async.client`_ for asynchronous usage; it's based on the
-  Asynchronous Http Client for Java.
-
-We're going to start with the synchronous client, and then possibly add async
-support.
-
-.. Links
-.. -----
-.. _clj-http: https://github.com/dakrone/clj-http
-.. _http.async.client: https://github.com/neotyk/http.async.client
-
-
-Links
------
-
-To use or develop against Rackspace Cloud APIs, we've provided the following
-(hopefully) useful links:
-
-* http://docs.rackspace.com/ - documentation for Rackspace Cloud
-
-  * http://docs.rackspace.com/servers/api/v2/cs-devguide/content/ch_preface.html - Cloud Servers docs
-
-* http://www.rackspace.com/cloud/ - information about Rackspace Cloud services
-
-* https://mycloud.rackspace.com/ - sign in to the Rackspace Cloud (OpenStack)
+functionality, we'll add it. Initial focus will be on supporting only a subset
+of Rackspace Cloud Services (version 2 Cloud Servers).
 
 
 Installation
 ============
 
-TBD
+`clj-rackspace` is up on `Clojars`_. You can add it to your `project.clj` for
+automatic download with the following:
+
+.. code:: clojure
+
+(defproject your-project "1.2.3"
+  ...
+  :dependencies [[org.clojure/clojure "1.5.1"]
+                  ...
+                  [clj-rackspace "0.1.0"]]
+  ...)
+
+You can then use it in your project like so:
+
+.. code:: clojure
+
+    (ns your-project.client
+      (:require [rackspace.api :as rs-api]))
+
+Or from the REPL:
+
+.. code:: clojure
+
+    (require '[rackspace.api :as rs-api])
+
+.. Links
+.. -----
+.. _Clojars: https://clojars.org/clj-rackspace
 
 
 CloudServers Usage
@@ -232,3 +180,87 @@ If you know the region you want, you can get the URL for it simply with this:
     rackspace.api=> (get-region-url response :dfw)
     "https://dfw.servers.api.rackspacecloud.com/v2/007007"
     rackspace.api=>
+
+
+Background
+==========
+
+This project was started in 2009 by Samuel Hughes. After a first implementation
+against the v1 API of Rackspace Cloud Servers, the project went into
+hibernation.
+
+Clojure is a delight to code in, and although it supports fabulous
+Java interop, using jclouds from Clojure is a bit tedious. One alternative
+would be to take the `Clojure-idiomatic example`_ and grow that as a wrapper
+around jclouds. That was seriously considered. Another alterative was to take
+Samuel Hughes' work based on `technomancy`_'s `clojure-http-client`_ and develop
+a pure Clojure implementation.
+
+That just sounded like more fun :-) So here we are.
+
+.. Links
+.. -----
+.. _Clojure-idiomatic example: https://github.com/jclouds/jclouds-examples/tree/master/compute-clojure
+.. _technomancy: https://github.com/technomancy
+.. _clojure-http-client: https://github.com/technomancy/clojure-http-client
+
+
+Motivation
+----------
+
+There are two efforts driving this work:
+
+#. Rackspace Cloud Servers users who write in Clojure want to have a library
+   that can use quickly, easily, and in a Clojure-idiomatic way.
+
+#. `storm-deploy`_ users would like to be able to deploy to Rackspace Cloud
+   Servers.
+
+A note about that last point: `pallet`_ (used by storm-deploy) currently uses
+`jclouds`_, so it might simply be easier to use jclouds. Only time will tell. In
+the meantime, we'll have fun playing with a pure-Clojure implementation.
+
+.. Links
+.. -----
+.. _storm-deploy: https://github.com/nathanmarz/storm-deploy
+.. _pallet: https://github.com/pallet/pallet
+.. _jclouds: https://github.com/jclouds/jclouds
+
+
+Dependencies
+------------
+
+In the four years since this project was started, HTTP clients in Clojure have
+come a long way. We will be migrating away from the original implementation's
+choice of clojure-http-client.
+
+The two commonly recommended clients are:
+
+* `clj-http`_ for synchronous/blocking client calls; this library is a Clojure
+  wrapper for the Apache HTTP client library.
+
+* `http.async.client`_ for asynchronous usage; it's based on the
+  Asynchronous Http Client for Java.
+
+We have started with the synchronous client. Hopefully, we'll add async support
+at some point in the future. No promises. We'll defer that for later.
+
+.. Links
+.. -----
+.. _clj-http: https://github.com/dakrone/clj-http
+.. _http.async.client: https://github.com/neotyk/http.async.client
+
+
+Links
+-----
+
+To use or develop against Rackspace Cloud APIs, we've provided the following
+(hopefully) useful links:
+
+* http://docs.rackspace.com/ - documentation for Rackspace Cloud
+
+  * http://docs.rackspace.com/servers/api/v2/cs-devguide/content/ch_preface.html - Cloud Servers docs
+
+* http://www.rackspace.com/cloud/ - information about Rackspace Cloud services
+
+* https://mycloud.rackspace.com/ - sign in to the Rackspace Cloud (OpenStack)
