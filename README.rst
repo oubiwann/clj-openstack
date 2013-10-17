@@ -55,7 +55,7 @@ CloudServers Usage
 ==================
 
 The easiest way to get started with `clj-rackspace` is to play with it in the
-REPL. From the rpoject directory, just do this at the command line prompt:
+REPL. From the project directory, just do this at the command line prompt:
 
 .. code:: bash
 
