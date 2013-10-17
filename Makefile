@@ -43,3 +43,6 @@ coverage-only:
 	a {color: #A5C0F0;}" >> target/coverage/coverage.css
 
 check: kibit-only test-only coverage-only
+
+upload:
+	@lein deploy clojars
