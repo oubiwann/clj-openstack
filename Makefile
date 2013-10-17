@@ -34,10 +34,10 @@ kibit-only:
 	@lein with-profile testing kibit
 
 test-only:
-	@MIDJE_COLORIZE=true lein with-profile testing midje :print-facts
+	@lein with-profile testing test
 
 coverage-only:
-	@lein with-profile testing cloverage  --text --html
+	@lein with-profile testing cloverage --text --html
 	@cat target/coverage/coverage.txt
 	@echo "body {background-color: #000; color: #fff;} \
 	a {color: #A5C0F0;}" >> target/coverage/coverage.css
