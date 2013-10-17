@@ -1,16 +1,8 @@
-;; All functions include web service response as metadata.
-;;
-;; To start out, try:
-;;
-;; (let [session (login "<username>" "<api key>")
-;;       response (list-servers session)]
-;;   (println response)
-;;   (println (meta response)))
-;;
 (ns rackspace.cloudservers
   (:require [clj-http.client :as http]
             [clojure.data.json :as json]
             [rackspace.const :as const]))
+
 
 (defstruct rs-response :value)
 
@@ -21,18 +13,6 @@
    (let [response (http/get (str (session :url) arg)
          {const/x-auth-token (session :token)})]
      (with-meta (json/read-str (first (response :body-seq))) response))
-   (catch Exception e (println e))))
-
-(defn login
-  "Login and starts a session. Returns an rs-session struct"
-  [user auth]
-  (try
-   (let [response (http/get const/auth-url
-         {const/x-auth-user user
-          const/x-auth-key auth})]
-     (with-meta (struct rs-session
-      ((response :headers) const/x-server-management-url)
-      ((response :headers) const/x-auth-token)) response))
    (catch Exception e (println e))))
 
 (defn list-servers
