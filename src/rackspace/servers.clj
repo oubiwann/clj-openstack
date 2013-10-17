@@ -1,4 +1,4 @@
-(ns rackspace.cloudservers
+(ns rackspace.servers
   (:require [clj-http.client :as http]
             [clojure.data.json :as json]
             [rackspace.const :as const]))

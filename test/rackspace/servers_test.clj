@@ -1,6 +1,6 @@
-(ns rackspace.cloudservers-test
+(ns rackspace.servers-test
   (:require [clojure.test :refer :all]
-            [rackspace.cloudservers :refer :all]))
+            [rackspace.servers :refer :all]))
 
 (deftest a-test
   (testing ""
