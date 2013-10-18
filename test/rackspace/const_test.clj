@@ -1,6 +1,5 @@
 (ns rackspace.const-test
   (:require [clojure.test :refer :all]
-            [clj-http.client :as http]
             [rackspace.const :as const]))
 
 
