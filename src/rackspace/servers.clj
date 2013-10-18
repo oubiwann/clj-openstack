@@ -3,6 +3,11 @@
             [clojure.data.json :as json]
             [rackspace.const :as const]))
 
+; XXX NOTE!!!
+; This file is basically useless right now.
+; It is a vestiage of the original code from which this project was cloned.
+; This file will slowly have its parts updated, but for now, consider it
+; completely broken!
 
 (defstruct rs-response :value)
 
@@ -65,7 +70,6 @@
     (with-meta (struct rs-response (if (= (response :msg) "No Content")
              true
              false)) response)))
-
 
 (defn delete-server
   "Delete server."
