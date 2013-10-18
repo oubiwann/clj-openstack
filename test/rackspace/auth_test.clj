@@ -31,14 +31,20 @@
         #"AuthError: Missing named parameter"
         (auth/login "alice")))))
 
-(deftest test-get-token
+(deftest test-get-token-data
   (with-redefs [http/post (fn [url data] payload/login)]
     (let [response (auth/login "alice" :apikey "0123456789abcdef")
-          data (auth/get-token response)]
+          data (auth/get-token-data response)]
       (is (= [:RAX-AUTH:authenticatedBy :expires :id :tenant]
              (sort (keys data))))
       (is (= "482664e7cf97408e82f512fad93abc98"
              (data :id))))))
+
+(deftest test-get-token
+  (with-redefs [http/post (fn [url data] payload/login)]
+    (let [response (auth/login "alice" :apikey "0123456789abcdef")
+          data (auth/get-token response)]
+      (is (= "482664e7cf97408e82f512fad93abc98")))))
 
 (deftest test-get-service-catalog
   (with-redefs [http/post (fn [url data] payload/login)]

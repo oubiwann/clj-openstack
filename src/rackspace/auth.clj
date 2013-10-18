@@ -41,8 +41,11 @@
 (defn parse-json-body [response]
   (json/read-str (response :body) :key-fn keyword))
 
-(defn get-token [response]
+(defn get-token-data [response]
   (((parse-json-body response) :access) :token))
+
+(defn get-token [response]
+  ((get-token-data response) :id))
 
 (defn get-service-catalog [response]
   (((parse-json-body response) :access) :serviceCatalog))
