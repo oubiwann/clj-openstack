@@ -3,8 +3,7 @@
             [clj-http.client :as http]
             [rackspace.const :as const]
             [rackspace.auth :as auth]
-            [rackspace.testing.payloads.auth :as payload]
-            ))
+            [rackspace.testing.payloads.auth :as payload]))
 
 
 (deftest test-login
