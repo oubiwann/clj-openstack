@@ -1,4 +1,4 @@
-(ns rackspace.auth
+(ns rackspace.identity
   (:require [clojure.data.json :as json]
             [clojure.string :as string]
             [clj-http.client :as http]

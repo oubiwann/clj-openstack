@@ -1,4 +1,4 @@
-(ns rackspace.testing.payloads.auth)
+(ns rackspace.testing.payloads.identity)
 
 (def login {
   :orig-content-encoding "gzip",
