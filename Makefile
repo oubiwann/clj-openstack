@@ -40,8 +40,9 @@ run:
 standalone: build
 	java -jar $(STANDALONE)
 
-kibit-only:
+lint-only:
 	@lein with-profile testing kibit
+	@lein with-profile testing eastwood
 
 test-only:
 	@lein with-profile testing test
@@ -63,7 +64,7 @@ check-versions:
 	@echo "starlanes.version:"
 	@lein exec -ep "(require '[$(LIB).version]) (print (str \"\t\" $(LIB).version/STARLANES-VERSION-STR))"
 
-check: kibit-only test-only coverage-only check-versions
+check: lint-only test-only coverage-only check-versions
 
 upload:
 	@lein deploy clojars
