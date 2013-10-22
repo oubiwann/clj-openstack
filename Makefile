@@ -1,4 +1,4 @@
-VERSION=0.1.1
+VERSION=0.1.2
 LIB=rackspace
 PROJECT=clj-$(LIB)
 STANDALONE=target/$(PROJECT)-$(VERSION)-SNAPSHOT-standalone.jar

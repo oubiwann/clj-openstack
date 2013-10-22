@@ -2,7 +2,7 @@
 
 (def STARLANES-VERSION {:major 0
                         :minor 1
-                        :patch 1
+                        :patch 2
                         :snapshot true})
 
 (def STARLANES-VERSION-STR
