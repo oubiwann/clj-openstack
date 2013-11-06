@@ -51,7 +51,7 @@ Or from the REPL:
 .. _Clojars: https://clojars.org/clj-rackspace
 
 
-Running the Examples
+Running Example Code
 ====================
 
 The easiest way to get started with `clj-rackspace` is to play with it in the
