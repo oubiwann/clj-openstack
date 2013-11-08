@@ -13,7 +13,7 @@
                            {:username username
                             :password password}}})
    :headers {"Content-Type" "application/json"}})
-
+  
 (defn apikey-auth-payload [username apikey]
   {:body (json/write-str {:auth
                           {:RAX-KSKEY:apiKeyCredentials
