@@ -3,8 +3,8 @@
             [clj-http.client :as http]
             [rackspace.const :as const]
             [rackspace.identity :as identity]
+            [rackspace.util :as util]
             [rackspace.testing.payloads.identity :as payload]))
-
 
 (deftest test-login
   (with-redefs [http/post (fn [url data] payload/login)]
@@ -50,6 +50,30 @@
     (let [response (identity/login "alice" :apikey "0123456789abcdef")
           data (identity/get-token response)]
       (is (= "482664e7cf97408e82f512fad93abc98")))))
+
+(deftest test-get-disk-username
+  (let [file (util/create-temp-file)
+        file-contents "alice"]
+    (spit file file-contents)
+    (with-redefs [const/username-file file]
+      (let [username (identity/get-disk-username)]
+        (is (= username file-contents))))))
+
+(deftest test-get-disk-password
+  (let [file (util/create-temp-file)
+        file-contents "z0mg11!!secret1!1"]
+    (spit file file-contents)
+    (with-redefs [const/password-file file]
+      (let [password (identity/get-disk-password)]
+        (is (= password file-contents))))))
+
+(deftest test-get-disk-apikey
+  (let [file (util/create-temp-file)
+        file-contents "0a12b33c444d5555ee0123456789ffff"]
+    (spit file file-contents)
+    (with-redefs [const/apikey-file file]
+      (let [apikey (identity/get-disk-apikey)]
+        (is (= apikey file-contents))))))
 
 (deftest test-get-username
   (with-redefs [identity/get-env-username (fn [] "env-username")]
