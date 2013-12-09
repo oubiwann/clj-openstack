@@ -55,7 +55,14 @@ Running Example Code
 ====================
 
 The easiest way to get started with `clj-rackspace` is to play with it in the
-REPL. From the project directory, just do this at the command line prompt:
+REPL. You'll need to download the code for this:
+
+.. code:: bash
+
+    $ git clone https://github.com/oubiwann/clj-rackspace
+    $ cd clj-rackspace
+
+Now just do this at the command line prompt:
 
 .. code:: bash
 

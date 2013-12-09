@@ -26,10 +26,10 @@
     const/auth-url
     (password-auth-payload username password)))
 
-(defn apikey-login [username password]
+(defn apikey-login [username apikey]
   (http/post
     const/auth-url
-    (apikey-auth-payload username password)))
+    (apikey-auth-payload username apikey)))
 
 (defn login [username & {:keys [password apikey]}]
   (cond
