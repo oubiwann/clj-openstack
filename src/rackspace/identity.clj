@@ -50,3 +50,6 @@
 
 (defn get-disk-password []
   (slurp const/password-file))
+
+(defn get-disk-apikey []
+  (slurp const/apikey-file))

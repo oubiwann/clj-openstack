@@ -22,16 +22,16 @@
 
 (deftest test-rax-dir
   (is (= (str (System/getProperty "user.home") "/.rax")
-          const/rax-dir)))
+         const/rax-dir)))
 
 (deftest test-username-file
   (is (= (str (System/getProperty "user.home") "/.rax/username")
-          const/username-file)))
+         const/username-file)))
+
+(deftest test-password-file
+  (is (= (str (System/getProperty "user.home") "/.rax/password")
+         const/password-file)))
 
 (deftest test-apikey-file
   (is (= (str (System/getProperty "user.home") "/.rax/apikey")
-        const/apikey-file)))
-
-(deftest test-password-file
-  (is (= (str (System/getProperty "user.home") "/.rax/password") 
-         const/password-file)))
+         const/apikey-file)))
