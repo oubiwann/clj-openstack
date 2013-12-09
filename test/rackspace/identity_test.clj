@@ -72,9 +72,3 @@
                 identity/get-disk-apikey (fn [] "disk-apikey")]
     (let [apikey (identity/get-apikey)]
       (is (= apikey "disk-apikey")))))
-
-(deftest test-get-auth-credentials
-  (let [test-creds (identity/get-auth-credentials)]
-  (is (not-any? nil? [(test-creds :username)
-                  (test-creds :password)
-                  (test-creds :apikey)]))))
