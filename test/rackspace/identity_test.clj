@@ -45,3 +45,4 @@
     (let [response (identity/login "alice" :apikey "0123456789abcdef")
           data (identity/get-token response)]
       (is (= "482664e7cf97408e82f512fad93abc98")))))
+
