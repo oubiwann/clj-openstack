@@ -15,3 +15,6 @@
 (deftest test-regions
   (is (= [[:dfw "DFW"] [:iad "IAD"] [:ord "ORD"] [:syd "SYD"]]
          (sort const/regions))))
+
+(deftest test-password-file
+  (is (= (str (System/getProperty "user.home") "/.rax/password") const/password-file)))
