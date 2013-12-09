@@ -23,3 +23,6 @@
               :dfw "DFW"
               :ord "ORD"
               :iad "IAD"})
+
+(def dot-dir "~/.rax")
+(def password-file (clojure.string/join "/" [dot-dir "password"]))
