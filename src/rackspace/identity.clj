@@ -45,9 +45,35 @@
 (defn get-token [response]
   ((get-token-data response) :id))
 
-(defn get-auth-credentials
-  "This returns a hashmap with user credentials set in the OS environment."
-  []
-  {:username (System/getenv "RAX_USERNAME")
-   :password (System/getenv "RAX_PASSWORD")
-   :apikey (System/getenv "RAX_APIKEY")})
+(defn get-disk-username []
+  (clojure.string/trim-newline (slurp const/username-file)))
+
+(defn get-disk-password []
+  (clojure.string/trim-newline (slurp const/password-file)))
+
+(defn get-disk-apikey []
+  (clojure.string/trim-newline(slurp const/apikey-file)))
+
+(defn get-env-username [])
+
+(defn get-env-password [])
+
+(defn get-env-apikey [])
+
+(defn get-username []
+  (let [username (get-env-username)]
+  (cond
+    (not (nil? username)) username
+    :else (get-disk-username))))
+
+(defn get-password []
+  (let [password (get-env-password)]
+    (cond
+      (not (nil? password)) password
+      :else (get-disk-password))))
+
+(defn get-apikey []
+  (let [apikey (get-env-apikey)]
+    (cond
+      (not (nil? apikey)) apikey
+      :else (get-disk-apikey))))

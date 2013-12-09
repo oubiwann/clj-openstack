@@ -46,6 +46,33 @@
           data (identity/get-token response)]
       (is (= "482664e7cf97408e82f512fad93abc98")))))
 
+(deftest test-get-username
+  (with-redefs [identity/get-env-username (fn [] "env-username")]
+    (let [username (identity/get-username)]
+      (is (= username "env-username"))))
+  (with-redefs [identity/get-env-username (fn [] nil)
+                identity/get-disk-username (fn [] "disk-username")]
+    (let [username (identity/get-username)]
+      (is (= username "disk-username")))))
+
+(deftest test-get-password
+  (with-redefs [identity/get-env-password (fn [] "env-password")]
+    (let [password (identity/get-password)]
+      (is (= password "env-password"))))
+  (with-redefs [identity/get-env-password (fn [] nil)
+                identity/get-disk-password (fn [] "disk-password")]
+    (let [password (identity/get-password)]
+      (is (= password "disk-password")))))
+
+(deftest test-get-apikey
+  (with-redefs [identity/get-env-apikey (fn [] "env-apikey")]
+    (let [apikey (identity/get-apikey)]
+      (is (= apikey "env-apikey"))))
+  (with-redefs [identity/get-env-apikey (fn [] nil)
+                identity/get-disk-apikey (fn [] "disk-apikey")]
+    (let [apikey (identity/get-apikey)]
+      (is (= apikey "disk-apikey")))))
+
 (deftest test-get-auth-credentials
   (let [test-creds (identity/get-auth-credentials)]
   (is (not-any? nil? [(test-creds :username)

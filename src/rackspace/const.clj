@@ -23,3 +23,8 @@
               :dfw "DFW"
               :ord "ORD"
               :iad "IAD"})
+
+(def rax-dir (str (System/getProperty "user.home") "/.rax"))
+(def username-file (str rax-dir "/username"))
+(def password-file (str rax-dir "/password"))
+(def apikey-file (str rax-dir "/apikey"))
