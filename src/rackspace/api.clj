@@ -1,5 +1,6 @@
 (ns rackspace.api
-  (:require [rackspace.identity :refer [login get-token]]
+  (:require [rackspace.identity :refer [login 
+                                        get-token]]
             [rackspace.services :refer [get-service-catalog
                                         list-cloud-servers-regions
                                         get-cloud-servers-endpoints

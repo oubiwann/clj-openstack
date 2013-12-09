@@ -21,12 +21,6 @@
                             :apiKey apikey}}})
    :headers {"Content-Type" "application/json"}})
 
-(defn get-token-data [response]
-  (((util/parse-json-body response) :access) :token))
-
-(defn get-token [response]
-  ((get-token-data response) :id))
-
 (defn password-login [username password]
   (http/post
     const/auth-url
@@ -52,7 +46,7 @@
   (clojure.string/trim-newline (slurp const/password-file)))
 
 (defn get-disk-apikey []
-  (clojure.string/trim-newline (slurp const/apikey-file)))
+  (clojure.string/trim-newline(slurp const/apikey-file)))
 
 (defn get-env-username
   "Get the user name from the environment variables."
@@ -104,3 +98,15 @@
        :else (explicit-login (get-username) :password (get-password)))))
   ([& data]
     (apply explicit-login data)))
+
+(defn get-token [response]
+  (get-in (util/parse-json-body response) [:access :token :id]))
+
+(defn get-tenant-id [response]
+  (get-in (util/parse-json-body response) [:access :token :tenant :id]))
+
+(defn get-user-id [response]
+  (get-in (util/parse-json-body response) [:access :user :id]))
+
+(defn get-user-name [response]
+  (get-in (util/parse-json-body response) [:access :user :name]))
