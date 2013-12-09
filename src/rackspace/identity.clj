@@ -53,3 +53,27 @@
 
 (defn get-disk-apikey []
   (slurp const/apikey-file))
+
+(defn get-env-username [])
+
+(defn get-env-password [])
+
+(defn get-env-apikey [])
+
+(defn get-username []
+  (let [username (get-env-username)]
+  (cond
+    (not (nil? username)) username
+    :else (get-disk-username))))
+
+(defn get-password []
+  (let [password (get-env-password)]
+    (cond
+      (not (nil? password)) password
+      :else (get-disk-password))))
+
+(defn get-apikey []
+  (let [apikey (get-env-apikey)]
+    (cond
+      (not (nil? apikey)) apikey
+      :else (get-disk-apikey))))
