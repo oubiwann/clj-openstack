@@ -45,3 +45,9 @@
     (let [response (identity/login "alice" :apikey "0123456789abcdef")
           data (identity/get-token response)]
       (is (= "482664e7cf97408e82f512fad93abc98")))))
+
+(deftest test-get-auth-credentials
+  (let [test-creds (identity/get-auth-credentials)]
+  (is (not-any? nil? [(test-creds :username)
+                  (test-creds :password)
+                  (test-creds :apikey)]))))
