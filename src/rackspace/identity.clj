@@ -46,13 +46,13 @@
   ((get-token-data response) :id))
 
 (defn get-disk-username []
-  (slurp const/username-file))
+  (clojure.string/trim-newline (slurp const/username-file)))
 
 (defn get-disk-password []
-  (slurp const/password-file))
+  (clojure.string/trim-newline (slurp const/password-file)))
 
 (defn get-disk-apikey []
-  (slurp const/apikey-file))
+  (clojure.string/trim-newline(slurp const/apikey-file)))
 
 (defn get-env-username [])
 
