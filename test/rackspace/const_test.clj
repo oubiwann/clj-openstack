@@ -10,11 +10,15 @@
 (deftest test-services
   (is (= [:backup :block-storage :databases :dns :files :files-cdn
           :load-balancers :monitoring :servers-v1 :servers-v2]
-         (sort (keys const/services)))))
+         (sort (keys const/services))))
+  (is (= 10
+         (count const/services))))
 
 (deftest test-regions
   (is (= [[:dfw "DFW"] [:iad "IAD"] [:ord "ORD"] [:syd "SYD"]]
-         (sort const/regions))))
+         (sort const/regions)))
+  (is (= 4
+         (count const/regions))))
 
 (deftest test-rax-dir
   (is (= (str (System/getProperty "user.home") "/.rax")
