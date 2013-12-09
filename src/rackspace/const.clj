@@ -28,3 +28,6 @@
 (def username-file (str rax-dir "/username"))
 (def password-file (str rax-dir "/password"))
 (def apikey-file (str rax-dir "/apikey"))
+(def username-env "RAX_USERNAME")
+(def password-env "RAX_PASSWORD")
+(def apikey-env "RAX_APIKEY")
