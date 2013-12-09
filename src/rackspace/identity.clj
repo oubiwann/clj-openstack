@@ -45,9 +45,6 @@
             (exceptions/auth-error
               "AuthError: Missing named parameter"))))
 
-(defn implicit-login []
-  )
-
 (defn get-disk-username []
   (clojure.string/trim-newline (slurp const/username-file)))
 
@@ -60,7 +57,7 @@
 (defn get-env-username
   "Get the user name from the environment variables."
   []
-  (System/getenv const/username-env)
+  (System/getenv const/username-env))
 
 (defn get-env-password
   "Get the password from the environment variables."
@@ -100,6 +97,10 @@
 
 (defn login
   ([]
-    (implicit-login))
+   (let [apikey (get-apikey)]
+     (cond
+       (not (empty? apikey))
+            (explicit-login (get-username) :apikey apikey)
+       :else (explicit-login (get-username) :password (get-password)))))
   ([& data]
     (apply explicit-login data)))

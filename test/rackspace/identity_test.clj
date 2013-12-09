@@ -29,7 +29,12 @@
       (thrown-with-msg?
         clojure.lang.ExceptionInfo
         #"AuthError: Missing named parameter"
-        (identity/login "alice")))))
+        (identity/login "alice"))))
+    ; auth using ENV variables
+    ; XXX we'll add a test when we think about how to mock out System/getenv
+    ; auth using disc variables
+    ; XXX we'll add a test when Sean merges his temp file code
+    )
 
 (deftest test-get-token-data
   (with-redefs [http/post (fn [url data] payload/login)]
