@@ -9,7 +9,7 @@
 
 (defn get-service-catalog [identity-response]
   (((util/parse-json-body identity-response) :access) :serviceCatalog))
-
+  
 (defn get-service [identity-response service-type]
   (first
     (filter
@@ -22,13 +22,13 @@
 (defn get-cloud-servers-v2 [identity-response]
   (get-service identity-response (const/services :servers-v2)))
 
-(defn get-cloud-servers [identity-response & {:keys [version] :or {versoin 2}}]
+(defn get-cloud-servers [identity-response & {:keys [version] :or {version 2}}]
   (if (= version 1)
     (get-cloud-servers-v1 identity-response)
     (get-cloud-servers-v2 identity-response)))
 
 (defn get-cloud-servers-endpoints
-  [identity-response & {:keys [version] :or {versoin 2}}]
+  [identity-response & {:keys [version] :or {version 2}}]
   ((get-cloud-servers identity-response :version version) :endpoints))
 
 (defn list-cloud-servers-regions
