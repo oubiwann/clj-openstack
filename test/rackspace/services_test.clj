@@ -1,4 +1,4 @@
-(ns rackspace.identity-test
+(ns rackspace.services-test
   (:require [clojure.test :refer :all]
             [clj-http.client :as http]
             [rackspace.const :as const]
