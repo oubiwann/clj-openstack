@@ -21,6 +21,36 @@
                             :apiKey apikey}}})
    :headers {"Content-Type" "application/json"}})
 
+(defn get-token-data [response]
+  (((util/parse-json-body response) :access) :token))
+
+(defn get-token [response]
+  ((get-token-data response) :id))
+
+(defn get-env-value [env-key]
+  (let [env-value (System/getenv env-key)]
+  (if (empty? env-value) nil env-value)))
+
+(defn get-env-username
+  "Get the user name from the environment variables."
+  []
+  (get-env-value "RAX_USERNAME"))
+
+(defn get-env-password
+  "Get the password from the environment variables."
+  []
+  (get-env-value "RAX_PASSWORD"))
+
+(defn get-env-apikey
+  "Get the API key from the environment variables."
+  []
+  (get-env-value "RAX_APIKEY"))
+
+(defn get-password-or-apikey
+  "If a valid password exists return it, else return the API key."
+  []
+  (or (get-env-password) (get-env-apikey)))
+
 (defn password-login [username password]
   (http/post
     const/auth-url
@@ -31,7 +61,7 @@
     const/auth-url
     (apikey-auth-payload username apikey)))
 
-(defn login [username & {:keys [password apikey]}]
+(defn explicit-login [username & {:keys [password apikey]}]
   (cond
     password (password-login username password)
     apikey (apikey-login username apikey)
@@ -39,11 +69,8 @@
             (exceptions/auth-error
               "AuthError: Missing named parameter"))))
 
-(defn get-token-data [response]
-  (((util/parse-json-body response) :access) :token))
-
-(defn get-token [response]
-  ((get-token-data response) :id))
+(defn implicit-login []
+  )
 
 (defn get-disk-username []
   (clojure.string/trim-newline (slurp const/username-file)))
@@ -77,3 +104,9 @@
     (cond
       (not (nil? apikey)) apikey
       :else (get-disk-apikey))))
+
+(defn login
+  ([]
+    (implicit-login))
+  ([data]
+    (apply explicit-login data)))
