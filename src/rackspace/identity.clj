@@ -52,7 +52,7 @@
   (clojure.string/trim-newline (slurp const/password-file)))
 
 (defn get-disk-apikey []
-  (clojure.string/trim-newline(slurp const/apikey-file)))
+  (clojure.string/trim-newline (slurp const/apikey-file)))
 
 (defn get-env-username [])
 
