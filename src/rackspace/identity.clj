@@ -44,3 +44,10 @@
 
 (defn get-token [response]
   ((get-token-data response) :id))
+
+(defn get-auth-credentials
+  "This returns a hashmap with user credentials set in the OS environment."
+  []
+  {:username (System/getenv "RAX_USERNAME")
+   :password (System/getenv "RAX_PASSWORD")
+   :apikey (System/getenv "RAX_APIKEY")})
