@@ -15,3 +15,15 @@
 (deftest test-regions
   (is (= [[:dfw "DFW"] [:iad "IAD"] [:ord "ORD"] [:syd "SYD"]]
          (sort const/regions))))
+
+(deftest test-rax-dir
+  (is (= (str (System/getProperty "user.home") "/.rax")
+          const/rax-dir)))
+
+(deftest test-username-file
+  (is (= (str (System/getProperty "user.home") "/.rax/username")
+          const/username-file)))
+
+(deftest test-apikey-file
+  (is (= (str (System/getProperty "user.home") "/.rax/apikey")
+        const/apikey-file)))

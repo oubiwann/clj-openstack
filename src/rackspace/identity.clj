@@ -44,3 +44,6 @@
 
 (defn get-token [response]
   ((get-token-data response) :id))
+
+(defn get-disk-username []
+  (slurp const/username-file))

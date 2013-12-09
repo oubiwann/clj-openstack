@@ -24,5 +24,7 @@
               :ord "ORD"
               :iad "IAD"})
 
-(def dot-dir "~/.rax")
-(def password-file (clojure.string/join "/" [dot-dir "password"]))
+(def rax-dir (str (System/getProperty "user.home") "/.rax"))
+(def username-file (str rax-dir "/username"))
+(def password-file (str rax-dir "/password"))
+(def apikey-file (str rax-dir "/apikey"))
