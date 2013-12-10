@@ -8,4 +8,4 @@ pom.xml.asc
 /.lein-*
 /.nrepl-port
 /.idea
-clj_rackspace.iml
+clj_openstack.iml
