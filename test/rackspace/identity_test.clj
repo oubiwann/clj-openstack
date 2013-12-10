@@ -36,15 +36,6 @@
     ; XXX we'll add a test when Sean merges his temp file code
     )
 
-(deftest test-get-token-data
-  (with-redefs [http/post (fn [url data] payload/login)]
-    (let [response (identity/login "alice" :apikey "0123456789abcdef")
-          data (identity/get-token-data response)]
-      (is (= [:RAX-AUTH:authenticatedBy :expires :id :tenant]
-             (sort (keys data))))
-      (is (= "482664e7cf97408e82f512fad93abc98"
-             (data :id))))))
-
 (deftest test-get-token
   (with-redefs [http/post (fn [url data] payload/login)]
     (let [response (identity/login "alice" :apikey "0123456789abcdef")
