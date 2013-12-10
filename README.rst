@@ -1,8 +1,8 @@
 #############
-clj-rackspace
+clj-openstack
 #############
 
-*Pure Clojure Bindings for the Rackspace Cloud*
+*Pure Clojure Bindings for the OpenStack Clouds*
 
 
 .. contents:: Table of Contents
