@@ -5,4 +5,5 @@
                                         list-cloud-servers-regions
                                         get-cloud-servers-endpoints
                                         get-cloud-servers-region
-                                        get-cloud-servers-region-url]]))
+                                        get-cloud-servers-region-url]]
+            [rackspace.servers.v2.service :refer [get-new-server-payload]]))
