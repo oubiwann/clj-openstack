@@ -1,5 +1,5 @@
 VERSION=0.1.2
-LIB=rackspace
+LIB=openstack
 PROJECT=clj-$(LIB)
 STANDALONE=target/$(PROJECT)-$(VERSION)-SNAPSHOT-standalone.jar
 

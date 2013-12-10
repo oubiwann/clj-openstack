@@ -1,4 +1,4 @@
-(ns rackspace.testing.payloads.identity)
+(ns openstack.testing.payloads.identity)
 
 (def login {
   :orig-content-encoding "gzip",
@@ -14,4 +14,4 @@
             "content-length" "946",
             "x-newrelic-app-data" "PxQGUF9aDwETVlhSBQgFVUYdFGQHBDcQUQxLA1tMXV1dORYyVBNFDgFCa04sBkpAVR1BMUdDXggDEWFWAEYiEkAOUQFZTF1dXUcVUR9RH1JKAABXUVsJHwFUWU4VAwZWXFQCV1VQWwYJWg5RDxpp",
             "connection" "close"},
-  :body (slurp "src/rackspace/testing/payloads/data/identity-body.json")})
+  :body (slurp "test/payloads/identity-body.json")})

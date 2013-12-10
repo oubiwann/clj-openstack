@@ -1,6 +1,6 @@
-(ns rackspace.const-test
+(ns openstack.const-test
   (:require [clojure.test :refer :all]
-            [rackspace.const :as const]))
+            [openstack.const :as const]))
 
 
 (deftest test-auth-url

@@ -1,10 +1,10 @@
-(ns rackspace.services-test
+(ns openstack.services-test
   (:require [clojure.test :refer :all]
             [clj-http.client :as http]
-            [rackspace.const :as const]
-            [rackspace.identity :as identity]
-            [rackspace.services :as services]
-            [rackspace.testing.payloads.identity :as payload]))
+            [openstack.const :as const]
+            [openstack.identity :as identity]
+            [openstack.services :as services]
+            [openstack.testing.payloads.identity :as payload]))
 
 
 (deftest test-get-service-catalog

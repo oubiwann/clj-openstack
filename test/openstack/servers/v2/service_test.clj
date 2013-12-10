@@ -1,6 +1,6 @@
-(ns rackspace.servers.v2.service-test
+(ns openstack.servers.v2.service-test
   (:require [clojure.test :refer :all]
-            [rackspace.servers.v2.service :as service]))
+            [openstack.servers.v2.service :as service]))
 
 (deftest get-new-server-payload-test
   (let [payload (service/get-new-server-payload "server-test" "id-test" "flav-test")]
