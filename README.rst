@@ -2,7 +2,7 @@
 clj-openstack
 #############
 
-*Pure Clojure Bindings for the OpenStack Clouds*
+*Pure Clojure Bindings for OpenStack Clouds*
 
 
 .. contents:: Table of Contents
