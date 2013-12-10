@@ -1,10 +1,10 @@
-(ns rackspace.identity
+(ns openstack.identity
   (:require [clojure.data.json :as json]
             [clojure.string :as string]
             [clj-http.client :as http]
-            [rackspace.const :as const]
-            [rackspace.exceptions :as exceptions]
-            [rackspace.util :as util]))
+            [openstack.const :as const]
+            [openstack.exceptions :as exceptions]
+            [openstack.util :as util]))
 
 
 (defn password-auth-payload [username password]

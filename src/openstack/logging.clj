@@ -1,4 +1,4 @@
-(ns rackspace.logging "Library-specific wrapper around timbre"
+(ns openstack.logging "Library-specific wrapper around timbre"
   (:require [taoensso.timbre :as timbre]))
 
 (defn log [level message]

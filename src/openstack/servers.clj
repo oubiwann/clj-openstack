@@ -1,7 +1,7 @@
-(ns rackspace.servers
+(ns openstack.servers
   (:require [clj-http.client :as http]
             [clojure.data.json :as json]
-            [rackspace.const :as const]))
+            [openstack.const :as const]))
 
 ; XXX NOTE!!!
 ; This file is basically useless right now.

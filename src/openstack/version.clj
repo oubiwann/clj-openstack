@@ -1,4 +1,4 @@
-(ns rackspace.version)
+(ns openstack.version)
 
 (def STARLANES-VERSION {:major 0
                         :minor 1

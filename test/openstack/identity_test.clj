@@ -1,10 +1,10 @@
-(ns rackspace.identity-test
+(ns openstack.identity-test
   (:require [clojure.test :refer :all]
             [clj-http.client :as http]
-            [rackspace.const :as const]
-            [rackspace.identity :as identity]
-            [rackspace.util :as util]
-            [rackspace.testing.payloads.identity :as payload]))
+            [openstack.const :as const]
+            [openstack.identity :as identity]
+            [openstack.util :as util]
+            [openstack.testing.payloads.identity :as payload]))
 
 (deftest test-login
   (with-redefs [http/post (fn [url data] payload/login)]

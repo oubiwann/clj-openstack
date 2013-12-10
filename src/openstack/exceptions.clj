@@ -1,4 +1,4 @@
-(ns rackspace.exceptions)
+(ns openstack.exceptions)
 
 
 (defn exception [message & {:keys [type]}]

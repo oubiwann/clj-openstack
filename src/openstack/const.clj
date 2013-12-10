@@ -1,4 +1,4 @@
-(ns rackspace.const)
+(ns openstack.const)
 
 
 (def auth-url "https://identity.api.rackspacecloud.com/v2.0/tokens")

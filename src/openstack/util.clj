@@ -1,4 +1,4 @@
-(ns rackspace.util
+(ns openstack.util
   (:require [clojure.data.json :as json]))
 
 
