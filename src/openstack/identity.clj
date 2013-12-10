@@ -51,17 +51,17 @@
 (defn get-env-username
   "Get the user name from the environment variables."
   []
-  (System/getenv const/username-env))
+  (util/get-env const/username-env))
 
 (defn get-env-password
   "Get the password from the environment variables."
   []
-  (System/getenv const/password-env))
+  (util/get-env const/password-env))
 
 (defn get-env-apikey
   "Get the API key from the environment variables."
   []
-  (System/getenv const/apikey-env))
+  (util/get-env const/apikey-env))
 
 (defn get-username []
   (let [username (get-env-username)]
@@ -69,7 +69,7 @@
     (not (empty? username)) username
     :else (get-disk-username))))
 
-(defn get-password 
+(defn get-password
   "Unlike username and apikey, password can technically be an empty string, so
   allowing for that"
   []
