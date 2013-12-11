@@ -105,9 +105,6 @@
   (with-redefs [util/get-env (fn [value] "0123456789abcdef")]
     (is (= (identity/get-env-apikey) "0123456789abcdef"))))
 
-(deftest test-get-token
-  (is (= (identity/get-token payload/login) "482664e7cf97408e82f512fad93abc98")))
-
 (deftest test-get-tenant-id
   (is (= (identity/get-tenant-id payload/login) "007007")))
 
