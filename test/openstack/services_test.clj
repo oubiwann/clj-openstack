@@ -47,3 +47,34 @@
           data (services/get-cloud-servers-region-url response :ord)]
       (is (= "https://ord.servers.api.rackspacecloud.com/v2/007007"
              data)))))
+
+(deftest test-get-cloud-servers-region-url-with-no-service-catalog
+  (with-redefs [http/post (fn [url data] payload/login-with-no-service-catalog)]
+    (let [response (identity/login "alice" :apikey "0123456789abcdef")
+          data (services/get-cloud-servers-region-url response :ord)]
+      (is (= nil data)))))
+
+(deftest test-list-cloud-servers-regions-with-no-service-catalog
+  (with-redefs [http/post (fn [url data] payload/login-with-no-service-catalog)]
+    (let [response (identity/login "alice" :apikey "0123456789abcdef")
+          data (services/list-cloud-servers-regions response)]
+      (is (= () data)))))
+
+(deftest test-get-cloud-servers-region-with-no-services-catalog
+  (with-redefs [http/post (fn [url data] payload/login-with-no-service-catalog)]
+    (let [response (identity/login "alice" :apikey "0123456789abcdef")
+          data (services/get-cloud-servers-region response :dfw)]
+      (is (= nil data)))))
+
+(deftest test-get-service-catalog-with-no-services-catalog
+  (with-redefs [http/post (fn [url data] payload/login-with-no-service-catalog)]
+    (let [response (identity/login "alice" :apikey "0123456789abcdef")
+          data (services/get-service-catalog response)]
+      (is (= 0 (count data))))))
+
+(deftest test-get-cloud-servers-endpoints
+  (with-redefs [http/post (fn [url data] payload/login-with-no-service-catalog)]
+    ; get default version
+    (let [response (identity/login "alice" :apikey "0123456789abcdef")
+          data (services/get-cloud-servers-endpoints response)]
+      (is (= 0 (count data))))))

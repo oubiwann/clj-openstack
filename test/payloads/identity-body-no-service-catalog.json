@@ -1,0 +1,45 @@
+{
+    "access": {
+        "serviceCatalog": [],
+        "token": {
+            "RAX-AUTH:authenticatedBy": [
+                "APIKEY"
+            ],
+            "expires": "2013-10-17T20:11:40.557-05:00",
+            "id": "482664e7cf97408e82f512fad93abc98",
+            "tenant": {
+                "id": "007007",
+                "name": "007007"
+            }
+        },
+        "user": {
+            "RAX-AUTH:defaultRegion": "DFW",
+            "id": "16802",
+            "name": "oubiwann",
+            "roles": [
+                {
+                    "description": "Checkmate Access role",
+                    "id": "10000150",
+                    "name": "checkmate"
+                },
+                {
+                    "description": "A Role that allows a user access to keystone Service methods",
+                    "id": "5",
+                    "name": "object-store:default",
+                    "tenantId": "MossoCloudFS_0e0999fb-9866-4835-9bb1-bd158e11cea1"
+                },
+                {
+                    "description": "A Role that allows a user access to keystone Service methods",
+                    "id": "6",
+                    "name": "compute:default",
+                    "tenantId": "007007"
+                },
+                {
+                    "description": "User Admin Role.",
+                    "id": "3",
+                    "name": "identity:user-admin"
+                }
+            ]
+        }
+    }
+}

@@ -28,6 +28,7 @@
 (def username-file (str rax-dir "/username"))
 (def password-file (str rax-dir "/password"))
 (def apikey-file (str rax-dir "/apikey"))
+<<<<<<< HEAD
 (def username-env "OS_USERNAME")
 (def password-env "OS_PASSWORD")
 ; TODO: Remove this once the logic has been removed from identity and its tests
@@ -37,3 +38,6 @@
 (def region-name-env "OS_REGION_NAME")
 (def token-env "OS_TOKEN")
 (def auth-url-env "OS_AUTH_URL")
+
+(def server-path "/servers")
+(def server-detail-path "/servers/detail")

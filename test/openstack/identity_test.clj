@@ -31,7 +31,7 @@
         #"AuthError: Missing named parameter"
         (identity/login "alice"))))
     ; auth using ENV variables
-    ; XXX we'll add a test when we think about how to mock out util/get-env
+    ; XXX we'll add a test when we think about how to mock out System/getenv
     ; auth using disc variables
     ; XXX we'll add a test when Sean merges his temp file code
     )
@@ -112,3 +112,24 @@
                 identity/get-disk-apikey (fn [] "disk-apikey")]
     (let [apikey (identity/get-apikey)]
       (is (= apikey "disk-apikey")))))
+
+(deftest test-get-env-username
+  (with-redefs [util/get-env (fn [value] "alice")]
+    (is (= (identity/get-env-username) "alice"))))
+
+(deftest test-get-env-password
+  (with-redefs [util/get-env (fn [value] "secret")]
+    (is (= (identity/get-env-password) "secret"))))
+
+(deftest test-get-env-apikey
+  (with-redefs [util/get-env (fn [value] "0123456789abcdef")]
+    (is (= (identity/get-env-apikey) "0123456789abcdef"))))
+
+(deftest test-get-tenant-id
+  (is (= (identity/get-tenant-id payload/login) "007007")))
+
+(deftest test-get-user-id
+  (is (= (identity/get-user-id payload/login) "16802")))
+
+(deftest test-get-user-name
+  (is (= (identity/get-user-name payload/login) "oubiwann")))
