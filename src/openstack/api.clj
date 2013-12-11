@@ -6,4 +6,6 @@
                                         get-cloud-servers-endpoints
                                         get-cloud-servers-region
                                         get-cloud-servers-region-url]]
-            [openstack.servers.v2.service :refer [get-new-server-payload]]))
+            [openstack.servers.v2.service :refer [get-new-server-payload
+                                                  create-server
+                                                  get-server-list]]))
