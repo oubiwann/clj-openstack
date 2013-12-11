@@ -29,7 +29,7 @@
 
 (defn get-cloud-servers-endpoints
   [identity-response & {:keys [version] :or {version 2}}]
-  ((get-cloud-servers identity-response :version version) :endpoints))
+  (:endpoints (get-cloud-servers identity-response :version version)))
 
 (defn list-cloud-servers-regions
   "This is only valid for cloud servers v2."
@@ -47,4 +47,4 @@
       (get-cloud-servers-endpoints identity-response :version 2))))
 
 (defn get-cloud-servers-region-url [identity-response region]
-  ((get-cloud-servers-region identity-response region) :publicURL))
+  (:publicURL (get-cloud-servers-region identity-response region) ))
