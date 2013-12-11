@@ -1,4 +1,4 @@
-(ns openstack.servers.v2.service
+(ns openstack.compute
   (:require [clojure.data.json :as json]
             [clj-http.client :as http]
             [openstack.const :as const]
