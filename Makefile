@@ -41,14 +41,14 @@ standalone: build
 	java -jar $(STANDALONE)
 
 lint-only:
-	@lein with-profile testing kibit
-	@lein with-profile testing eastwood
+	@lein with-profile unit-tests kibit
+	@lein with-profile unit-tests eastwood
 
 test-only:
-	@lein with-profile testing test
+	@lein with-profile unit-tests test
 
 coverage-only:
-	@lein with-profile testing cloverage --text --html
+	@lein with-profile unit-tests cloverage --text --html
 	@cat target/coverage/coverage.txt
 	@echo "body {background-color: #000; color: #fff;} \
 	a {color: #A5C0F0;}" >> target/coverage/coverage.css
