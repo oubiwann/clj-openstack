@@ -57,11 +57,11 @@
          const/apikey-file)))
 
 (deftest test-username-env
-  (is (= "RAX_USERNAME"
+  (is (= "OS_USERNAME"
          const/username-env)))
 
 (deftest test-password-env
-  (is (= "RAX_PASSWORD"
+  (is (= "OS_PASSWORD"
         const/password-env)))
 
 (deftest test-apikey-env
