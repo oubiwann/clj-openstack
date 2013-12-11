@@ -7,10 +7,8 @@
 
 (deftest get-new-server-payload-test
   (let [payload (compute/get-new-server-payload "server-test" "id-test" "flav-test")]
-    (is (= (payload :body)
-           "{\"server\":{\"name\":\"server-test\",\"imageRef\":\"id-test\",\"flavorRef\":\"flav-test\"}}"))
-    (is (= (payload :content-type)
-           :json))))
+    (is (= payload
+           "{\"server\":{\"name\":\"server-test\",\"imageRef\":\"id-test\",\"flavorRef\":\"flav-test\"}}"))))
 
 ;simply ensures that the response from the POST is returned
 (deftest create-server-test
@@ -23,11 +21,11 @@
                mock-response))))))
 
 ;simply ensures that the response from the GET is returned
-(deftest get-server-list-test
+(deftest get-server-details-list-test
   (let [mock-response {:mock "response"}]
     (with-redefs [services/get-cloud-servers-region-url (fn [identity-response region] "url")
                   http/get (fn [url data] mock-response)
                   identity/get-token (fn [identity-response] "token")]
-      (let [response (compute/get-server-list {} :ord)]
+      (let [response (compute/get-server-details-list {} :ord)]
         (is = (response
                mock-response))))))
