@@ -57,16 +57,36 @@
          const/apikey-file)))
 
 (deftest test-username-env
-  (is (= "RAX_USERNAME"
+  (is (= "OS_USERNAME"
          const/username-env)))
 
 (deftest test-password-env
-  (is (= "RAX_PASSWORD"
+  (is (= "OS_PASSWORD"
         const/password-env)))
 
 (deftest test-apikey-env
   (is (= "RAX_APIKEY"
         const/apikey-env)))
+
+(deftest tenant-name-env
+  (is (= "OS_TENANT_NAME"
+        const/tenant-name-env)))
+
+(deftest tenant-id-env
+  (is (= "OS_TENANT_ID"
+        const/tenant-id-env)))
+
+(deftest region-name-env
+  (is (= "OS_REGION_NAME"
+        const/region-name-env)))
+
+(deftest token-env
+  (is (= "OS_TOKEN"
+        const/token-env)))
+
+(deftest auth-url-env
+  (is (= "OS_AUTH_URL"
+        const/auth-url-env)))
 
 (deftest test-server-path
   (is (= "/servers"
