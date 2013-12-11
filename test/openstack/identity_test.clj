@@ -66,6 +66,26 @@
       (let [apikey (identity/get-disk-apikey)]
         (is (= apikey file-contents))))))
 
+(deftest test-get-env-tenant-name
+  (with-redefs [util/get-env (fn [value] "project-1")]
+    (is (= (identity/get-env-tenant-name) "project-1"))))
+
+(deftest test-get-env-tenant-id
+  (with-redefs [util/get-env (fn [value] "6b8fd2")]
+    (is (= (identity/get-env-tenant-id) "6b8fd2"))))
+
+(deftest test-get-env-region-name
+  (with-redefs [util/get-env (fn [value] "us-east-2")]
+    (is (= (identity/get-env-region-name) "us-east-2"))))
+
+(deftest test-get-env-token
+  (with-redefs [util/get-env (fn [value] "e80b74")]
+    (is (= (identity/get-env-token) "e80b74"))))
+
+(deftest test-get-env-auth-url
+  (with-redefs [util/get-env (fn [value] "http://identity:35322/")]
+    (is (= (identity/get-env-auth-url) "http://identity:35322/"))))
+
 (deftest test-get-username
   (with-redefs [identity/get-env-username (fn [] "env-username")]
     (let [username (identity/get-username)]
