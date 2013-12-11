@@ -68,6 +68,26 @@
   (is (= "RAX_APIKEY"
         const/apikey-env)))
 
+(deftest tenant-name-env
+  (is (= "OS_TENANT_NAME"
+        const/tenant-name-env)))
+
+(deftest tenant-id-env
+  (is (= "OS_TENANT_ID"
+        const/tenant-id-env)))
+
+(deftest region-name-env
+  (is (= "OS_REGION_NAME"
+        const/region-name-env)))
+
+(deftest token-env
+  (is (= "OS_TOKEN"
+        const/token-env)))
+
+(deftest auth-url-env
+  (is (= "OS_AUTH_URL"
+        const/auth-url-env)))
+
 (deftest test-server-path
   (is (= "/servers"
          const/server-path)))
