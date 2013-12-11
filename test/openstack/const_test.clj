@@ -64,9 +64,10 @@
   (is (= "OS_PASSWORD"
         const/password-env)))
 
-(deftest test-apikey-env
-  (is (= "RAX_APIKEY"
-        const/apikey-env)))
+; TODO: remove
+; (deftest test-apikey-env
+;   (is (= "RAX_APIKEY"
+;         const/apikey-env)))
 
 (deftest tenant-name-env
   (is (= "OS_TENANT_NAME"

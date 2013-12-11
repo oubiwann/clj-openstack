@@ -14,27 +14,30 @@
                             :password password}}})
    :headers {"Content-Type" "application/json"}})
 
-(defn apikey-auth-payload [username apikey]
-  {:body (json/write-str {:auth
-                          {:RAX-KSKEY:apiKeyCredentials
-                           {:username username
-                            :apiKey apikey}}})
-   :headers {"Content-Type" "application/json"}})
+; TODO: remove
+; (defn apikey-auth-payload [username apikey]
+;   {:body (json/write-str {:auth
+;                           {:RAX-KSKEY:apiKeyCredentials
+;                            {:username username
+;                             :apiKey apikey}}})
+;    :headers {"Content-Type" "application/json"}})
 
 (defn password-login [username password]
   (http/post
     const/auth-url
     (password-auth-payload username password)))
 
-(defn apikey-login [username apikey]
-  (http/post
-    const/auth-url
-    (apikey-auth-payload username apikey)))
+; TODO: remove
+; (defn apikey-login [username apikey]
+;   (http/post
+;     const/auth-url
+;     (apikey-auth-payload username apikey)))
 
-(defn explicit-login [username & {:keys [password apikey]}]
+(defn login [username & {:keys [password apikey]}]
   (cond
     password (password-login username password)
-    apikey (apikey-login username apikey)
+    ; TODO: remove
+    ; apikey (apikey-login username apikey)
     :else (throw
             (exceptions/auth-error
               "AuthError: Missing named parameter"))))
@@ -58,10 +61,11 @@
   []
   (util/get-env const/password-env))
 
-(defn get-env-apikey
-  "Get the API key from the environment variables."
-  []
-  (util/get-env const/apikey-env))
+; TODO: remove
+; (defn get-env-apikey
+;   "Get the API key from the environment variables."
+;   []
+;   (util/get-env const/apikey-env))
 
 (defn get-env-tenant-name
   "Get the tenant name from the environment variables."
@@ -103,26 +107,29 @@
       (not (nil? password)) password
       :else (get-disk-password))))
 
-(defn get-apikey []
-  (let [apikey (get-env-apikey)]
-    (cond
-      (not (empty? apikey)) apikey
-      :else (get-disk-apikey))))
+; TODO: remove
+; (defn get-apikey []
+;   (let [apikey (get-env-apikey)]
+;     (cond
+;       (not (empty? apikey)) apikey
+;       :else (get-disk-apikey))))
 
-(defn get-password-or-apikey
-  "If a valid password exists return it, else return the API key."
-  []
-  (or (get-env-apikey) (get-env-password)))
+; TODO: remove
+; (defn get-password-or-apikey
+;   "If a valid password exists return it, else return the API key."
+;   []
+;   (or (get-env-apikey) (get-env-password)))
 
-(defn login
-  ([]
-   (let [apikey (get-apikey)]
-     (cond
-       (not (empty? apikey))
-            (explicit-login (get-username) :apikey apikey)
-       :else (explicit-login (get-username) :password (get-password)))))
-  ([& data]
-    (apply explicit-login data)))
+; TODO: remove
+; (defn login
+;   ([]
+;    (let [apikey (get-apikey)]
+;      (cond
+;        (not (empty? apikey))
+;             (explicit-login (get-username) :apikey apikey)
+;        :else (explicit-login (get-username) :password (get-password)))))
+;   ([& data]
+;     (apply explicit-login data)))
 
 (defn get-token [response]
   (get-in (util/parse-json-body response) [:access :token :id]))
