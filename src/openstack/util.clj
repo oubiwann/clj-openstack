@@ -3,7 +3,7 @@
 
 
 (defn parse-json-body [response]
-  (json/read-str (response :body) :key-fn keyword))
+  (json/read-str (:body response) :key-fn keyword))
 
 (defn create-temp-file
   ([] (create-temp-file "clj-rax-" ".tmp"))
