@@ -8,4 +8,4 @@
                                         get-cloud-servers-region-url]]
             [openstack.compute :refer [get-new-server-payload
                                        create-server
-                                       get-server-list]]))
+                                       get-server-details-list]]))
