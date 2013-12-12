@@ -14,27 +14,14 @@
                             :password password}}})
    :headers {"Content-Type" "application/json"}})
 
-(defn apikey-auth-payload [username apikey]
-  {:body (json/write-str {:auth
-                          {:RAX-KSKEY:apiKeyCredentials
-                           {:username username
-                            :apiKey apikey}}})
-   :headers {"Content-Type" "application/json"}})
-
 (defn password-login [username password]
   (http/post
     const/auth-url
     (password-auth-payload username password)))
 
-(defn apikey-login [username apikey]
-  (http/post
-    const/auth-url
-    (apikey-auth-payload username apikey)))
-
-(defn explicit-login [username & {:keys [password apikey]}]
+(defn login [username & {:keys [password]}]
   (cond
     password (password-login username password)
-    apikey (apikey-login username apikey)
     :else (throw
             (exceptions/auth-error
               "AuthError: Missing named parameter"))))
@@ -44,9 +31,6 @@
 
 (defn get-disk-password []
   (clojure.string/trim-newline (slurp const/password-file)))
-
-(defn get-disk-apikey []
-  (clojure.string/trim-newline(slurp const/apikey-file)))
 
 (defn get-env-username
   "Get the user name from the environment variables."
@@ -58,10 +42,30 @@
   []
   (util/get-env const/password-env))
 
-(defn get-env-apikey
-  "Get the API key from the environment variables."
+(defn get-env-tenant-name
+  "Get the tenant name from the environment variables."
   []
-  (util/get-env const/apikey-env))
+  (util/get-env const/tenant-name-env))
+
+(defn get-env-tenant-id
+  "Get the tenant id from the environment variables."
+  []
+  (util/get-env const/tenant-id-env))
+
+(defn get-env-region-name
+  "Get the region name from the environment variables."
+  []
+  (util/get-env const/region-name-env))
+
+(defn get-env-token
+  "Get the token from the environment variables."
+  []
+  (util/get-env const/token-env))
+
+(defn get-env-auth-url
+  "Get the auth url from the environment variables."
+  []
+  (util/get-env const/auth-url-env))
 
 (defn get-username []
   (let [username (get-env-username)]
@@ -77,27 +81,6 @@
     (cond
       (not (nil? password)) password
       :else (get-disk-password))))
-
-(defn get-apikey []
-  (let [apikey (get-env-apikey)]
-    (cond
-      (not (empty? apikey)) apikey
-      :else (get-disk-apikey))))
-
-(defn get-password-or-apikey
-  "If a valid password exists return it, else return the API key."
-  []
-  (or (get-env-apikey) (get-env-password)))
-
-(defn login
-  ([]
-   (let [apikey (get-apikey)]
-     (cond
-       (not (empty? apikey))
-            (explicit-login (get-username) :apikey apikey)
-       :else (explicit-login (get-username) :password (get-password)))))
-  ([& data]
-    (apply explicit-login data)))
 
 (defn get-token [response]
   (get-in (util/parse-json-body response) [:access :token :id]))

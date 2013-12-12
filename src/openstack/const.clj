@@ -28,10 +28,13 @@
 (def username-file (str rax-dir "/username"))
 (def password-file (str rax-dir "/password"))
 (def apikey-file (str rax-dir "/apikey"))
-
-(def username-env "RAX_USERNAME")
-(def password-env "RAX_PASSWORD")
-(def apikey-env "RAX_APIKEY")
+(def username-env "OS_USERNAME")
+(def password-env "OS_PASSWORD")
+(def tenant-name-env "OS_TENANT_NAME")
+(def tenant-id-env "OS_TENANT_ID")
+(def region-name-env "OS_REGION_NAME")
+(def token-env "OS_TOKEN")
+(def auth-url-env "OS_AUTH_URL")
 
 (def server-path "/servers")
 (def server-detail-path "/servers/detail")
