@@ -3,12 +3,14 @@
             [clj-http.client :as http]
             [openstack.compute :as compute]
             [openstack.identity :as identity]
-            [openstack.services :as services]))
+            [openstack.services :as services]
+            [clojure.data.json :as json]))
 
 (deftest get-new-server-payload-test
-  (let [payload (compute/get-new-server-payload "server-test" "id-test" "flav-test")]
-    (is (= payload
-           "{\"server\":{\"name\":\"server-test\",\"imageRef\":\"id-test\",\"flavorRef\":\"flav-test\"}}"))))
+  (let [payload (compute/get-new-server-payload "name-test" "id-test" "flav-test")
+        payload-map (json/read-str payload :key-fn keyword)]
+    (is (= payload-map
+           {:server {:name "name-test", :imageRef "id-test", :flavorRef "flav-test"}}))))
 
 ;simply ensures that the response from the POST is returned
 (deftest create-server-test
