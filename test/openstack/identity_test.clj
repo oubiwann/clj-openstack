@@ -17,7 +17,7 @@
       (thrown-with-msg?
         clojure.lang.ExceptionInfo
         #"AuthError: Missing named parameter"
-        (identity/login "alice" :pass-word "secret")))
+        (identity/login "alice" :misnamed-pass-word "secret")))
     ; attempt auth with missing named parameter
     (is
       (thrown-with-msg?
