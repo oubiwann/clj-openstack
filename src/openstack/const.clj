@@ -30,8 +30,6 @@
 (def apikey-file (str rax-dir "/apikey"))
 (def username-env "OS_USERNAME")
 (def password-env "OS_PASSWORD")
-; TODO: Remove this once the logic has been removed from identity and its tests
-; (def apikey-env "RAX_APIKEY")
 (def tenant-name-env "OS_TENANT_NAME")
 (def tenant-id-env "OS_TENANT_ID")
 (def region-name-env "OS_REGION_NAME")
