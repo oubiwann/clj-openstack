@@ -1,9 +1,9 @@
 (ns openstack.util
-  (:require [clojure.data.json :as json]))
+  (:require [cheshire.core :refer :all :as json]))
 
 
 (defn parse-json-body [response]
-  (json/read-str (response :body) :key-fn keyword))
+  (json/decode (response :body) true))
 
 (defn create-temp-file
   ([] (create-temp-file "clj-rax-" ".tmp"))

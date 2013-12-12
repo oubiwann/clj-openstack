@@ -1,5 +1,5 @@
 (ns openstack.identity
-  (:require [clojure.data.json :as json]
+  (:require [cheshire.core :refer :all :as json]
             [clojure.string :as string]
             [clj-http.client :as http]
             [openstack.const :as const]
@@ -8,7 +8,7 @@
 
 
 (defn password-auth-payload [username password]
-  {:body (json/write-str {:auth
+  {:body (json/encode {:auth
                           {:passwordCredentials
                            {:username username
                             :password password}}})
