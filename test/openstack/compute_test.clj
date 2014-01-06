@@ -15,7 +15,7 @@
 ;simply ensures that the response from the POST is returned
 (deftest create-server-test
   (let [mock-response {:mock "response"}]
-    (with-redefs [services/get-cloud-servers-region-url (fn [identity-response region] "url")
+    (with-redefs [services/get-compute-url (fn [identity-response] "url")
                   http/post (fn [url data] mock-response)
                   identity/get-token (fn [identity-response] "token")]
       (let [response (compute/create-server {} :ord "server-name" "image-id" "flavor-id")]
@@ -25,7 +25,7 @@
 ;simply ensures that the response from the GET is returned
 (deftest get-server-list-test
   (let [mock-response {:mock "response"}]
-    (with-redefs [services/get-cloud-servers-region-url (fn [identity-response region] "url")
+    (with-redefs [services/get-compute-url (fn [identity-response] "url")
                   http/get (fn [url data] mock-response)
                   identity/get-token (fn [identity-response] "token")]
       (let [response (compute/get-server-list {} :ord)]
