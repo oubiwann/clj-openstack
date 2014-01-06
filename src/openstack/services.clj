@@ -16,3 +16,5 @@
       (fn [x] (if (= (x :name) service-type) x))
       (get-service-catalog identity-response))))
 
+(defn get-compute-url [identity-response]
+  )
