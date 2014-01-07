@@ -5,6 +5,8 @@
                                        create-server
                                        get-server-list]]
             [openstack.services :refer [get-service-catalog]]
+            [openstack.config :as config]
+            [openstack.const :as const]
             [openstack.util :as util]))
 
 
