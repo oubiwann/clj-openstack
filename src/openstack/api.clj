@@ -1,11 +1,12 @@
 (ns openstack.api
   (:require [openstack.identity :refer [login
                                         get-token]]
-            [openstack.services :refer [get-service-catalog
-                                        list-cloud-servers-regions
-                                        get-cloud-servers-endpoints
-                                        get-cloud-servers-region
-                                        get-cloud-servers-region-url]]
             [openstack.compute :refer [get-new-server-payload
                                        create-server
-                                       get-server-list]]))
+                                       get-server-list]]
+            [openstack.services :refer [get-service-catalog]]
+            [openstack.util :as util]))
+
+
+;; Perform start-up tasks
+(util/make-config)

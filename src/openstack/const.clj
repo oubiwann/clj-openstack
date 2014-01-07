@@ -8,26 +8,11 @@
 (def x-storage-url "X-Storage-Url")
 (def x-auth-token "X-Auth-Token")
 
-(def services {:servers-v2 "cloudServersOpenStack"
-               :servers-v1 "cloudServers"
-               :files-cdn "cloudFilesCDN"
-               :files "cloudFiles"
-               :databases "cloudDatabases"
-               :backup "cloudBackup"
-               :block-storage "cloudBlockStorage"
-               :dns "cloudDNS"
-               :load-balancers "cloudLoadBalancers"
-               :monitoring "cloudMonitoring"})
-
-(def regions {:syd "SYD"
-              :dfw "DFW"
-              :ord "ORD"
-              :iad "IAD"})
-
-(def rax-dir (str (System/getProperty "user.home") "/.rax"))
-(def username-file (str rax-dir "/username"))
-(def password-file (str rax-dir "/password"))
-(def apikey-file (str rax-dir "/apikey"))
+(def os-dir (str (System/getProperty "user.home") "/.openstack"))
+(def username-file (str os-dir "/username"))
+(def password-file (str os-dir "/password"))
+(def apikey-file (str os-dir "/apikey"))
+(def config-file (str os-dir "/providers.ini"))
 (def username-env "OS_USERNAME")
 (def password-env "OS_PASSWORD")
 (def tenant-name-env "OS_TENANT_NAME")

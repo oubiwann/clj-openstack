@@ -13,14 +13,14 @@
    :content-type :json})
 
 (defn create-server [identity-response region server-name image-id flavor-id]
-  (let [base-url (services/get-cloud-servers-region-url identity-response region)]
+  (let [base-url (services/get-compute-url identity-response)]
     (http/post
       (str base-url const/server-path)
       {:content-type :json
        :headers {const/x-auth-token (identity/get-token identity-response)}})))
 
 (defn get-server-list [identity-response region]
-  (let [base-url (services/get-cloud-servers-region-url identity-response region)]
+  (let [base-url (services/get-compute-url identity-response)]
     (http/get
       (str base-url const/server-detail-path)
       {:accept :json

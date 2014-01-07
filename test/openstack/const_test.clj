@@ -27,33 +27,20 @@
   (is (= "X-Auth-Token"
         const/x-auth-token)))
 
-(deftest test-services
-  (is (= [:backup :block-storage :databases :dns :files :files-cdn
-          :load-balancers :monitoring :servers-v1 :servers-v2]
-         (sort (keys const/services))))
-  (is (= 10
-         (count const/services))))
-
-(deftest test-regions
-  (is (= [[:dfw "DFW"] [:iad "IAD"] [:ord "ORD"] [:syd "SYD"]]
-         (sort const/regions)))
-  (is (= 4
-         (count const/regions))))
-
-(deftest test-rax-dir
-  (is (= (str (System/getProperty "user.home") "/.rax")
-         const/rax-dir)))
+(deftest test-openstack-dir
+  (is (= (str (System/getProperty "user.home") "/.openstack")
+         const/os-dir)))
 
 (deftest test-username-file
-  (is (= (str (System/getProperty "user.home") "/.rax/username")
+  (is (= (str (System/getProperty "user.home") "/.openstack/username")
          const/username-file)))
 
 (deftest test-password-file
-  (is (= (str (System/getProperty "user.home") "/.rax/password")
+  (is (= (str (System/getProperty "user.home") "/.openstack/password")
          const/password-file)))
 
 (deftest test-apikey-file
-  (is (= (str (System/getProperty "user.home") "/.rax/apikey")
+  (is (= (str (System/getProperty "user.home") "/.openstack/apikey")
          const/apikey-file)))
 
 (deftest test-username-env
