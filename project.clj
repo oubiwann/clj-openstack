@@ -6,6 +6,7 @@
   :dependencies [[org.clojure/clojure "1.5.1"]
                  [org.clojure/data.json "0.2.3"]
                  [clj-http "0.7.7"]
+                 [com.brainbot/iniconfig "0.2.0"]
                  [com.taoensso/timbre "3.0.0-RC2"]]
   :repositories [["releases" {:url "https://clojars.org/repo"
                               :creds :gpg}]]
