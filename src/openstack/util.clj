@@ -8,17 +8,27 @@
   (json/read-str (response :body) :key-fn keyword))
 
 (defn create-temp-file
-  ([] (create-temp-file "clj-rax-" ".tmp"))
-  ([prefix suffix] (doto (java.io.File/createTempFile prefix suffix) .deleteOnExit)))
+  ([]
+   (create-temp-file "clj-os-" ".tmp"))
+  ([prefix suffix]
+   (doto (java.io.File/createTempFile prefix suffix) .deleteOnExit)))
+
+(defn make-dirs [path]
+  (io/make-parents
+    (str path "/" "null")))
+
+(defn create-temp-dir []
+  (let [base-dir (System/getProperty "java.io.tmpdir")
+        uniq (str (System/currentTimeMillis) "-" (long (rand 1000000)) "-")
+        tmp-dir-name (str base-dir "org.clj.openstack." uniq)]
+    (make-dirs tmp-dir-name)
+    (doto (io/file tmp-dir-name) .deleteOnExit)
+    tmp-dir-name))
 
 (defn get-env
   "This is a wrapper method for System/getenv."
   [value]
   (System/getenv value))
-
-(defn make-dirs [path]
-  (io/make-parents
-    (str path "/" "null")))
 
 (defn config-file? []
   (.exists (io/as-file const/config-file)))
