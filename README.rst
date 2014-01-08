@@ -21,7 +21,7 @@ of Rackspace Cloud Services (version 2 Cloud Servers).
 Installation
 ============
 
-`clj-rackspace` is up on `Clojars`_. You can add it to your `project.clj` for
+`clj-openstack` is up on `Clojars`_. You can add it to your `project.clj` for
 automatic download with the following:
 
 .. code:: clojure
@@ -30,7 +30,7 @@ automatic download with the following:
       ...
       :dependencies [[org.clojure/clojure "1.5.1"]
                       ...
-                      [clj-rackspace "0.1.1"]]
+                      [clj-openstack "0.1.1"]]
       ...)
 
 You can then use it in your project like so:
@@ -38,29 +38,29 @@ You can then use it in your project like so:
 .. code:: clojure
 
     (ns your-project.client
-      (:require [rackspace.api :as rax-api]))
+      (:require [openstack.api :as os-api]))
 
 Or from the REPL:
 
 .. code:: clojure
 
-    (require '[rackspace.api :as rax-api])
+    (require '[openstack.api :as rax-api])
 
 .. Links
 .. -----
-.. _Clojars: https://clojars.org/clj-rackspace
+.. _Clojars: https://clojars.org/clj-openstack
 
 
 Running Example Code
 ====================
 
-The easiest way to get started with `clj-rackspace` is to play with it in the
+The easiest way to get started with ``clj-openstack`` is to play with it in the
 REPL. You'll need to download the code for this:
 
 .. code:: bash
 
-    $ git clone https://github.com/oubiwann/clj-rackspace
-    $ cd clj-rackspace
+    $ git clone https://github.com/oubiwann/clj-openstack
+    $ cd clj-openstack
 
 Now just do this at the command line prompt:
 
@@ -68,7 +68,7 @@ Now just do this at the command line prompt:
 
     $ make shell
 
-Which will dump you in the `rackspace.api` namespace:
+Which will dump you in the `openstack.api` namespace:
 
 .. code:: clojure
 
@@ -82,7 +82,7 @@ Which will dump you in the `rackspace.api` namespace:
         Exit: Control+D or (exit) or (quit)
      Results: Stored in vars *1, *2, *3, an exception in *e
 
-    rackspace.api=>
+    openstack.api=>
 
 For the examples below, you will need to provide your own username, password,
 and any data returned from Rackspace Cloud services.
@@ -92,42 +92,69 @@ pretty-printing:
 
 .. code:: clojure
 
-    rackspace.api=> (require '[clojure.pprint :refer [pprint]])
+    openstack.api=> (require '[clojure.pprint :refer [pprint]])
     nil
-    rackspace.api=>
+    openstack.api=>
 
 
-CloudServers Usage
-==================
+Identity Service Usage
+======================
 
-
-Logging In
-----------
-
-Via password:
+Loging in via password entered directly:
 
 .. code:: clojure
 
-    rackspace.api=> (def response (login "alice" :password "z0mg11!!secret1!1"))
-    #'rackspace.api/response
-    rackspace.api=>
+    openstack.api=> (def response (login :username "alice" :password "z0mg1!1"))
+    #'openstack.api/response
+    openstack.api=>
 
-Via API key:
+Via the ``~/.openstack/providers.ini`` configuration file:
+
+.. code:: ini
+
+    [my-cloud]
+    username = bob
+    password = 12345
 
 .. code:: clojure
 
-    rackspace.api=> (login "alice" :apikey "0a12b33c444d5555ee0123456789ffff")
+    openstack.api=> (login :provider "my-cloud")
     {:orig-content-encoding "gzip" ... }
-    rackspace.api=>
+    openstack.api=>
 
-You will need to pass one of the two, however:
+Extracted from the environment:
 
 .. code:: clojure
 
-    rackspace.api=> (login "alice")
+    openstack.api=> (login :env true)
+    {:orig-content-encoding "gzip" ... }
+    openstack.api=>
+
+Extracted from files:
+
+.. code:: clojure
+
+    openstack.api=> (login :files true)
+    {:orig-content-encoding "gzip" ... }
+    openstack.api=>
+
+Implicit extraction (first env is checked, and then files):
+
+.. code:: clojure
+
+    openstack.api=> (login)
+    {:orig-content-encoding "gzip" ... }
+    openstack.api=>
+
+Attempting to use a bad keyword or only one of a require keyword pair will throw
+an error:
+
+.. code:: clojure
+
+    openstack.api=> (login username: "alice")
 
     ExceptionInfo AuthError: Missing named parameter  ...
-    rackspace.api=>
+    openstack.api=>
 
 
 Working with Login Data
@@ -140,74 +167,19 @@ Getting the token:
 
 .. code:: clojure
 
-    rackspace.api=> (pprint (get-token response))
+    openstack.api=> (pprint (get-token response))
     {:id "482664e7cf97408e82f512fad93abc98",
      :expires "2013-10-17T20:11:40.557-05:00",
      :tenant {:id "007007", :name "007007"},
      :RAX-AUTH:authenticatedBy ["PASSWORD"]}
     nil
-    rackspace.api=>
+    openstack.api=>
 
-Listing the regions:
 
-.. code:: clojure
+Compute Service Usage
+=====================
 
-    rackspace.api=> (list-cloud-servers-regions response)
-    (:syd :dfw :ord :iad)
-    rackspace.api=>
-
-Getting all the endpoints:
-
-.. code:: clojure
-
-    rackspace.api=> (pprint (get-cloud-servers-endpoints response))
-    [{:region "SYD",
-      :tenantId "007007",
-      :publicURL "https://syd.servers.api.rackspacecloud.com/v2/007007",
-      :versionInfo "https://syd.servers.api.rackspacecloud.com/v2",
-      :versionList "https://syd.servers.api.rackspacecloud.com/",
-      :versionId "2"}
-     {:region "DFW",
-      :tenantId "007007",
-      :publicURL "https://dfw.servers.api.rackspacecloud.com/v2/007007",
-      :versionInfo "https://dfw.servers.api.rackspacecloud.com/v2",
-      :versionList "https://dfw.servers.api.rackspacecloud.com/",
-      :versionId "2"}
-     {:region "ORD",
-      :tenantId "007007",
-      :publicURL "https://ord.servers.api.rackspacecloud.com/v2/007007",
-      :versionInfo "https://ord.servers.api.rackspacecloud.com/v2",
-      :versionList "https://ord.servers.api.rackspacecloud.com/",
-      :versionId "2"}
-     {:region "IAD",
-      :tenantId "007007",
-      :publicURL "https://iad.servers.api.rackspacecloud.com/v2/007007",
-      :versionInfo "https://iad.servers.api.rackspacecloud.com/v2",
-      :versionList "https://iad.servers.api.rackspacecloud.com/",
-      :versionId "2"}]
-    nil
-    rackspace.api=>
-
-Optionally, you may provide a version number (version 2 is assumed by default):
-
-.. code:: clojure
-
-    rackspace.api=> (pprint (get-cloud-servers-endpoints response :version 1))
-    [{:tenantId "007007",
-      :publicURL "https://servers.api.rackspacecloud.com/v1.0/007007",
-      :versionInfo "https://servers.api.rackspacecloud.com/v1.0",
-      :versionList "https://servers.api.rackspacecloud.com/",
-      :versionId "1.0"}]
-    nil
-    rackspace.api=>
-
-If you know the region you want, you can get the URL for it simply with this:
-
-.. code:: clojure
-
-    rackspace.api=> (get-cloud-servers-region-url response :dfw)
-    "https://dfw.servers.api.rackspacecloud.com/v2/007007"
-    rackspace.api=>
+TBD
 
 
 Background
@@ -282,13 +254,12 @@ at some point in the future. No promises. We'll defer that for later.
 Links
 -----
 
-To use or develop against Rackspace Cloud APIs, we've provided the following
+To use or develop against OpenStack Cloud APIs, we've provided the following
 (hopefully) useful links:
 
-* http://docs.rackspace.com/ - documentation for Rackspace Cloud
+* http://docs.openstack.org/api/quick-start/content/ - quick start for OpenStack
+  APIs
 
-  * http://docs.rackspace.com/servers/api/v2/cs-devguide/content/ch_preface.html - Cloud Servers docs
+* http://api.openstack.org/api-ref-identity.html - Login/authentication API docs
 
-* http://www.rackspace.com/cloud/ - information about Rackspace Cloud services
-
-* https://mycloud.rackspace.com/ - sign in to the Rackspace Cloud (OpenStack)
+* http://api.openstack.org/api-ref-compute.html - Compute API docs
