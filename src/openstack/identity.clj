@@ -2,6 +2,7 @@
   (:require [clojure.data.json :as json]
             [clojure.string :as string]
             [clj-http.client :as http]
+            [openstack.config :as config]
             [openstack.const :as const]
             [openstack.exceptions :as exceptions]
             [openstack.util :as util]))
@@ -19,12 +20,10 @@
     const/auth-url
     (password-auth-payload username password)))
 
-(defn login [username & {:keys [password]}]
-  (cond
-    password (password-login username password)
-    :else (throw
-            (exceptions/auth-error
-              "AuthError: Missing named parameter"))))
+(defn config-login [provider]
+  (let [cfg (config/read-config)]
+    (password-login ((cfg provider) "username")
+                    ((cfg provider) "password"))))
 
 (defn get-disk-username []
   (clojure.string/trim-newline (slurp const/username-file)))
@@ -81,6 +80,20 @@
     (cond
       (not (nil? password)) password
       :else (get-disk-password))))
+
+(defn login
+  ([]
+   (password-login (get-username) (get-password)))
+  ([& {:keys [username password provider env files]}]
+    (cond
+     (not (empty? provider)) (config-login provider)
+     (= env true) (password-login (get-env-username) (get-env-password))
+     (= files true) (password-login (get-disk-username) (get-disk-password))
+     (and (not (empty? username))
+          (not (empty? password))) (password-login username password)
+     :else (throw
+             (exceptions/auth-error
+               "AuthError: Missing named parameter")))))
 
 (defn get-token [response]
   (get-in (util/parse-json-body response) [:access :token :id]))
