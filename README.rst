@@ -100,7 +100,11 @@ pretty-printing:
 Identity Service Usage
 ======================
 
-Loging in via password entered directly:
+
+Loging In
+---------
+
+Via password entered directly:
 
 .. code:: clojure
 
