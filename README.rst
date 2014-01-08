@@ -15,7 +15,7 @@ Fun.
 
 This project doesn't really aim to be anything special. As we need some
 functionality, we'll add it. Initial focus will be on supporting only a subset
-of Rackspace Cloud Services (version 2 Cloud Servers).
+of the OpenStack Cloud Services (initially only Identity and Compute).
 
 
 Installation
