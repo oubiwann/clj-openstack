@@ -84,8 +84,7 @@ Which will dump you in the `openstack.api` namespace:
 
     openstack.api=>
 
-For the examples below, you will need to provide your own username, password,
-and any data returned from Rackspace Cloud services.
+For the examples below, you will need to provide your own username and password.
 
 To make things easier to read in the examples below, let's set up
 pretty-printing:
@@ -104,7 +103,7 @@ Identity Service Usage
 Loging In
 ---------
 
-Via password entered directly:
+You may login via password entered directly:
 
 .. code:: clojure
 
@@ -172,10 +171,7 @@ Getting the token:
 .. code:: clojure
 
     openstack.api=> (pprint (get-token response))
-    {:id "482664e7cf97408e82f512fad93abc98",
-     :expires "2013-10-17T20:11:40.557-05:00",
-     :tenant {:id "007007", :name "007007"},
-     :RAX-AUTH:authenticatedBy ["PASSWORD"]}
+    "482664e7cf97408e82f512fad93abc98"
     nil
     openstack.api=>
 
