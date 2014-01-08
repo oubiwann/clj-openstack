@@ -149,12 +149,12 @@ Implicit extraction (first env is checked, and then files):
     {:orig-content-encoding "gzip" ... }
     openstack.api=>
 
-Attempting to use a bad keyword or only one of a require keyword pair will throw
-an error:
+Attempting to use a bad keyword or only one of a required keyword pair will
+throw an error:
 
 .. code:: clojure
 
-    openstack.api=> (login username: "alice")
+    openstack.api=> (login :username "alice")
 
     ExceptionInfo AuthError: Missing named parameter  ...
     openstack.api=>
